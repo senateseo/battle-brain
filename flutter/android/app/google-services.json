@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "994591351355",
+    "project_id": "smartone-1cd43",
+    "storage_bucket": "smartone-1cd43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994591351355:android:5c2e344a2c4a3f85cdf21e",
+        "android_client_info": {
+          "package_name": "com.ai.smartone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6kuXhE4jGje7v8HMbD0-3EN97BDosxyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

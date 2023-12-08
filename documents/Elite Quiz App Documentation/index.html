@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <link href="images/favicon.webp" rel="icon" />
+    <title>Documentation | Elite Quiz App</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
+</head>
+<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
+    <!-- Document Wrapper   
+        =============================== -->
+    <div id="main-wrapper">
+
+        <!-- Header -->
+        <header id="header" class="sticky-top">
+            <!-- Navbar -->
+            <nav class="primary-menu navbar navbar-expand-lg bg-dark navbar-dropdown-dark">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggler -->
+                    <button id="sidebarCollapse" class="navbar-toggler d-block d-md-none"
+                        type="button"><span></span><span class="w-75"></span><span></span></button>
+                    <!-- Logo -->
+                    <img src="images/logo.webp" width="200" alt="logo" />
+                    <!-- Logo End -->
+                </div>
+            </nav>
+            <!-- Navbar End -->
+        </header>
+        <!-- Header End -->
+
+        <!-- Content -->
+        <div id="content" role="main">
+
+            <!-- Sidebar Navigation -->
+            <div class="idocs-navigation bg-dark docs-navigation-dark">
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a href="#introduction" class="nav-link active">Introduction</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#admin_panel">Setup Admin Panel</a>
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link" href="#installation">Configure on your server</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="#customize-panel">Customize Admin Panel</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#system-configurations">Settings For the App</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#quiz_app" class="nav-link">Setup Elite Quiz App</a>
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link" href="#howToSetupFlutter">Setup Flutter</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToRunFlutterProject">Run Flutter Project</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToChangePackageName">Change App Package Name</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToChangeAppName">Change Application Name</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToIntegrateFirebase">Integrate Firebase with the Project</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToEnableFirebaseAuth">Enable Firebase Authentication</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToEnableCloudFirestore">Enable Firebase Cloud Firestore</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToChangeDatabaseUrl">Connect Your Admin Panel to the App</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#notification-management">Enable Notifications for App</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#modify_app" class="nav-link">Modify The App</a>
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link" href="#howToChangeAppVersion">Change Application Version And App Logo</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToSetDefaultLanguage">Set App's Default Language</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToAddLanguage">Add New Language for App</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToChangeAppColors">Change App Colors</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToConfigureAds">Configure Ads</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToChangeIntroSlideImages">Change Intro Slider Images</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToChangeDefaultProfileImages">Change Default Profile Avatar Images</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToConfigureInAppPurchase">Configure In-App Purchases</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToEnableMessageInBattle">Enable Message Feature in Battles</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToConfigureForceUpdate">Configure Force Update</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#manageBadges">Manage badges</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToSetupExamModule">Set up Exams Module</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToSetupEarningModule">Set up Earning Module</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToSetupTimer">Configure Quiz Timers, Score and Coins Management</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToAppConstants">Change App Constants</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#howToGenerateReleaseVersion">Generate Release Version of This Product</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="#faq" class="nav-link">FAQ & Common Issues</a></li>
+                    <li class="nav-item"><a href="#support" class="nav-link">Contact Support</a></li>
+                    <li class="nav-item"><a href="#rating" class="nav-link">Your Feedback</a></li>
+                    <li class="nav-item"><a href="#contactus" class="nav-link">Reach Us</a></li>
+                    <li class="nav-item"><a href="#changelogs" class="nav-link">Changelogs</a></li>
+                </ul>
+            </div>
+
+
+            <!-- Docs Content  -->
+            <div class="idocs-content">
+                <div class="container">
+                    <!-- Getting Started -->
+                    <section id="introduction">
+                        <h3>Thank You for your purchase</h3>
+                        <p>Thank you for choosing our code. We appreciate your purchase and aim to provide exceptional service.</p>
+                        <p>If you need help with the code or documentation, contact our <a href="#support">Support Team here</a>.</p>
+                        <hr>
+                    </section>
+
+                    <section id="admin_panel">
+                        <h3>Setup Admin Panel</h3>
+                        <section id="installation">
+                            <h4>Installing Admin Panel on Shared Hosting</h4>
+                            <ol>
+                                <li>Create your domain or subdomain in shared hosting.</li>
+                                <li>Set up an empty database in your shared hosting and keep track of these credentials:
+                                    <br /><span>i. Database name</span>
+                                    <br /><span>ii. Database username</span>
+                                    <br /><span>iii. Database password</span>
+                                </li>
+                                <li>Uploading the source code to Server
+                                    <br/><span>i. Begin by extracting the Source Code you acquired from CodeCanyon.</span>
+                                    <br/><span>ii. Unpack the Admin Panel zip file and proceed to upload the PHP Code Folder's contents onto your Server.</span>
+                                    <br>
+                                    <br/><span><strong style="color: red;">Note :-</strong> .htaccess file is essential; kindly verify its existence. If it is not visible, enable the option to display hidden files.</span>
+                                    <br/><span><strong style="color: red;">Note :-</strong> Supported PHP versions are 7.4 to 8.1.</span>
+                                    <br>
+                                </li>
+                                <li>
+                                    Now head to your project's URL (e.g., mydomain.com or subdomain.mydomain.com).<br>
+                                    The Installation screen will then walk you through the process seamlessly.
+                                </li>
+                            </ol>
+                            <p>Great news! You're all set to start your Elite Quiz experience at:
+                                <a href="https://elitequiz.wrteam.me">https://elitequiz.wrteam.me</a>
+                            </p>
+                            <strong>Default Login Details</strong><br>
+                            User: admin<br>
+                            Pass: admin123<br>
+                            <br><hr>
+                        </section>
+
+                        <section id="customize-panel">
+                            <h4>Customize Admin Panel for your brand</h4>
+                            <img src="images/panel/profile.webp" alt='Customize Panel' title='Customize Panel' />
+                            <ul>
+                                <li>Change Login Page Background Image & Bot Image from here</li>
+                                <li>Add the JWT Key, which will be used to generate users token for added security.</li>
+                            </ul>
+                            <br><hr>
+                        </section>
+
+                        <section id="system-configurations">
+                            <h4>Settings for the App</h4>
+                            <img src="images/panel/system-configurations.webp" alt='System Configurations'
+                                title='System Configurations'>
+                            <ul>
+                                <li>Refer Coins : Amount of coins your referral gets for using your referral code.</li>
+                                <li>Earn Coins : Amount of coins user gets for referring.</li>
+                                <li>Reward Coins : Amount of coins user gets from watching Rewarded Ads.</li>
+                                <li>App Versions: Used for Enabling force update for users with outdated apps.</li>
+                                <li>Answer Display : Control whether to show users the correctness of their submitted answers.</li>
+                                <li>Language Mode : Control wether you want multilingual app or single language app.</li>
+                                <li>Option E Mode : Control wether you want 5 options questions or 4 options questions in quiz zone.</li>
+                                <li>Fix Question in Level : Choose between a fixed or varying number of questions for Levels.</li>
+                            </ul>
+                            <p>
+                                In addition to that, you have full control over the types of quizzes you wish to display and those you prefer not to include.
+                            </p>
+                        </section>
+                        <br><hr>
+                    </section>
+
+                    <section id="quiz_app">
+                        <h3>Elite Quiz App</h3>
+
+                        <section id="howToSetupFlutter">
+                            <h4>Setup flutter</h4>
+                            <p>
+                                Explore the official Flutter website at <a href="https://docs.flutter.dev/get-started/install">https://docs.flutter.dev/get-started/install</a> for a complete installation guide.
+                                <br>Prefer video tutorials? Check out the playlist:<br>
+                                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLSzsOkUDsvdtl3Pw48-R8lcK2oYkk40cm" title="Flutter Installation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                                    <a href="https://www.youtube.com/playlist?list=PLSzsOkUDsvdtl3Pw48-R8lcK2oYkk40cm">https://www.youtube.com/playlist?list=PLSzsOkUDsvdtl3Pw48-R8lcK2oYkk40cm</a>
+                                </iframe>
+                            </p>
+                            <hr>
+                        </section>
+
+                        <section id="howToRunFlutterProject">
+                            <h4>Steps to run this project successfully:</h4>
+                            <ol>
+                                <li>
+                                    Begin by extracting the downloaded code, resulting in the creation of the Elite Quiz - Flutter Code zip folder.
+                                </li>
+                                <li>
+                                    Next, extract the contents of the Elite Quiz - Flutter Code folder and launch it in either Android Studio or Visual Studio Code.
+                                </li>
+                                <li>
+                                    Access the IDE terminal and enter the command "flutter pub get" to fetch the necessary dependencies. 
+                                </li>
+                                <li>
+                                    For iOS users, execute the following commands in the terminal:
+                                    <br>
+                                    <code>cd ios<br>pod install<br>cd ..</code>
+                                </li>
+                                <li>
+                                    Finally, open the terminal and input "flutter run" to run the application. This will initiate the execution of the project.
+                                </li>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="howToChangePackageName">
+                            <h4>Change app package name</h4>
+                            <ol>
+                                <li>
+                                    If you are using <strong>Android Studio</strong>, you can press <code>CTRL+SHIFT+R</code> to open Replace in Files tool.<br>
+                                    then search our package name <code>com.wrteam.flutterquiz</code> and replace it with your package name in all places.<br>
+                                </li>
+                                <img src="images/app/studio_replace_pkg_name.webp" alt="Android Studio Replace Package Name"/>
+                                <li>
+                                    And if you are using <strong>VS Code</strong>, you can press <code>CTRL+SHIFT+F</code> to open Find in Files Tool.<br>
+                                    then search our package name <code>com.wrteam.flutterquiz</code> and replace it with your package name in all places.<br>
+                                </li>
+                                <img src="images/app/vs_code_replace_pkg_name.webp" alt="VS Code Replace Package Name" height="auto"/>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="howToChangeAppName">
+                            <h4>Change application name</h4>
+                            <p>Similarly you can change the app name by finding and replacing in all the places.</p>
+                            <li>For Android Studio</li>
+                            <img src="images/app/appName2.webp"  />
+                            <li>For VS Code</li>
+                            <img src="images/app/appName2.webp"  />
+                            <br><hr>
+                        </section>
+
+                        <section id="howToIntegrateFirebase">
+                            <h4>Integrate firebase with your Project</h4>
+                            <ol>
+                                <li>First, Create a new Firebase Project
+                                    <img src="images/app/createFirebase1.webp" /><br>
+                                    <img src="images/app/createFirebase2.webp" /><br>
+                                    <!-- <img src="images/app/createFirebase3.webp"  /><br> -->
+                                </li>
+                                <li>After creating your Firebase project, you'll now connect your Android application to it
+                                    <img src="images/app/addAndroid.webp"  />
+                            </li><br>
+                                <li>Now, fill in the details, to get your SHA-1 & SHA-256 keys visit <a href="https://developers.google.com/android/guides/client-auth">https://developers.google.com/android/guides/client-auth</a>.
+                                    <br>SHA keys are required for using firebase authentication.
+                                    <img src="images/app/addAndroid2.webp"/><br>
+                                    <img src="images/app/addAndroid3.webp"/><br>
+                                    <img src="images/app/addAndroid4.webp"/><br>
+                                    <img src="images/app/addAndroid5.webp"/><br>
+                                    <img src="images/app/addAndroid6.webp"/><br>
+                                </li>
+                                <br>
+                                <li>Now it's time for connecting IOS to your Firebase Project.
+                                    <img src="images/app/addIos.webp"/>
+                                </li>
+                                    <img src="images/app/addIos2.webp"/><br>
+                                    <img src="images/app/addIos4.webp"/><br>
+                                    <img src="images/app/addIos5.webp"/><br>
+                                </li>
+                            </ol>
+                                <p>Congrats! You have successfully connected your android & IOS app to your firebase project.</p>
+                            <br><hr>
+                        </section>
+
+
+                        <section id="howToEnableFirebaseAuth">
+                            <h4>Enable Firebase Authentication</h4>
+                            <ol>
+                                <li>
+                                    Head to your Firebase project, click on the authentication menu, and enable all the mentioned sign-in methods from the image.
+                                    <img src="images/app/addFirebaseAuth.webp"/>
+                                </li>
+                                <p><strong style="color: red;">Note :- </strong>If your are using google sign-in you need to enable OAuth APIs that you want to use using <a href="https://console.developers.google.com/">https://console.developers.google.com/</a>.<br>
+                                    Enable people api and make sure you've filled out all required fields in the console for OAuth consent screen.<br>
+                                    Otherwise, you may encounter <strong>APIException errors</strong>.
+                                </p>
+
+                                <li>Add the SHA-256 key as shown in below image. Go to Project Settings -> Your apps -> Android apps
+                                    <img src="images/app/auth-1.webp"/>
+                                </li>
+
+                                <li>If you want to use Phone authentication in IOS then
+                                    <ol>
+                                        <li>
+                                            Go to <code>ios/Runner/GoogleService-Info.plist</code> and copy <code>REVERSED_CLIENT_ID</code>
+                                            <img src="images/app/addPhoneAuth.webp"/>
+                                        </li>
+                                        <li>
+                                            Paste it in <code>ios/Runner/Info.plist</code> as shown in below image
+                                            <img src="images/app/addPhoneAuth2.webp"  />
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                            <br><hr>
+                        </section>
+
+
+                        <section id="howToEnableCloudFirestore">
+                            <h4>Enable Cloud Firestore</h4>
+                            <p>Cloud Firestore is required for Group & 1v1 Battles to work.
+                            <br>Follow these steps shown in images below.
+                            </p>
+                            
+                            <img src="images/app/addFirestore.webp"/><br>
+                            <img src="images/app/addFirestore2.webp"/><br>
+                            <img src="images/app/addFirestore3.webp"/><br><br>
+                            <p>
+                                Make Sure to add these rules in your firestore, otherwise it won't work.
+                            </p>
+<code style="display: block; white-space: pre-wrap;">rules_version = '2';
+    service cloud.firestore {
+    match /databases/{database}/documents {
+        match /{document=**} {
+                allow read, write: if request.auth.uid != null;
+        }
+    }
+}</code><br>
+                            <img src="images/app/addFirestore4.webp"/>
+                            <br><hr>
+                        </section>
+
+
+                        <section id="howToChangeDatabaseUrl">
+                            <h4>Connect your admin panel to the app</h4>
+                            <ol>
+                                <li>
+                                    Go to <code>lib/utils/constants/constants.dart</code> and add your admin panel url, like shown in the image below.
+                                    <img src="images/app/changeBaseUrlAndApiParameters.webp"/>
+                                </li>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="notification-management">
+                            <h4>Enable Notifications for App</h4>
+                            <p>Access your Firebase project and locate "Project Settings" > "Cloud Messaging" as shown in the image.</p>
+                            <img src="images/panel/go_to_googlecloud.webp"/><br/><br/>
+                            <p>Then, enable Cloud Messaging in Google Cloud.</p>
+                            <img src="images/panel/enable_cloud_messaging.webp" />
+                            <p>Comeback to firebase project, copy the Server Key, and paste it under "Settings" > "Notification Settings"</p>
+                            <img src="images/panel/notification-setting.webp"/>
+                            <hr>
+                        </section>
+
+                    </section>
+
+                    <section id="modify_app">
+                        <section id="howToChangeAppVersion">
+                            <h4>Change application version and app launcher icon</h4>
+                                <li>
+                                    Go to <code>pubspec.yaml</code> Update the <code>version:A.B.C+X</code> as shown in image below.
+                                </li>
+                                <strong style="color: red;">Note :- </strong>Make sure execute <code>flutter packages get</code>, <code>flutter build</code> or <code>flutter run</code> after changing the version.
+                            <img src="images/app/changeAppVersion.webp"  />
+                            <br><br>
+                        </section>
+
+                        <section id="howToChangeAppLogo">
+                            <h4>Change App Logo</h4>
+                            <ol>
+                                <li><strong>For Android</strong>, open android > app > src > main > res and add here your logo according to device screen size
+                                    <img src="images/app/androidAppIcon.webp"  />
+                                </li>
+                                <li><strong>For IOS open</strong>, ios > Runner > Assets.xcassets > AppIcon.appiconset here and add your
+                                    logo according to diffrent size.
+                                    <img src="images/app/iosAppIcon.webp"  />
+                                </li>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="howToSetDefaultLanguage">
+                            <h4>Set app's default language</h4>
+                            <ol>
+                                <li>
+                                    The App's default language is English, but you can easily modify it. To do so, navigate to the <code>lib/utils/constants/constants.dart</code> file and locate the section displaying the language codes, as illustrated in the image below.<br>
+                                    You can obtain your desired language code from the following link: <a href="https://developers.google.com/admin-sdk/directory/v1/languages">https://developers.google.com/admin-sdk/directory/v1/languages</a>.<br>
+                                    Just ensure that the language code you select is available in the aforementioned link for proper functionality.
+                                    <img src="images/app/changeDefaultLanguage.webp"  />
+                                </li>
+                                <li>
+                                    If your desired language code is not in supported languages list, add language code in list as shown in below image.
+                                    <img src="images/app/addDefaultLanguage.webp"  />
+                                </li>
+                                <li>
+                                    create a <code>[language-code].json</code> file in <code>assets/languages/</code> if your desired language is not available. Copy all labels from en.json and translate the values accordingly.
+                                    <img src="images/app/addNewLanguage.webp"  />
+                                </li>
+                            </ol>
+                            <br><hr>
+                        </section>
+
+                        <section id="howToAddLanguage">
+                            <h4>Add new app language from admin panel</h4>
+                            <ol>
+                                <li>
+                                    Enable language mode in your admin panel as shown in the image below
+                                    <img src="images/app/admin-language-1.webp"  />
+                                </li>
+                                <li>
+                                    Go to languages section and select the language you want to from the drop down.
+                                    <img src="images/app/admin-language-2.webp"  />
+                                </li>
+                                <li> Also Add this language code in supported languages list in your app code.
+                                    <img src="images/app/addDefaultLanguage.webp"  />
+                                </li>
+                                <li>
+                                    create a <code>[language-code].json</code> file in <code>assets/languages/</code> if your desired language is not available. Copy all labels from en.json and translate the values accordingly.
+                                    <img src="images/app/addNewLanguage.webp"  />
+                                </li>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="howToChangeAppColors">
+                            <h4>Change app colors</h4>
+                            You can change colors of the app from <code>lib/ui/styles/colors.dart</code>.
+                            <img src="images/app/changeColors.webp"  />
+                            <hr>
+                        </section>
+
+                        <section id="howToConfigureAds">
+                            <h4>Configure Ads</h4>
+                            <h5>Google AdMob</h5>
+                            <p>
+                                To begin, create an <a href="https://apps.admob.com">AdMob</a> account and set up three Ad Units:
+                            <ol>
+                                <li>Banner Ad</li>
+                                <li>Interstitial Ad</li>
+                                <li>Rewarded Ad</li>
+                            </ol>
+                            </p>
+                                Find your app ID here: <a href="https://support.google.com/admob/answer/7356431?hl=en">https://support.google.com/admob/answer/7356431?hl=en</a>.
+                            <ol>
+                                <li>
+                                    For <strong>Android</strong>, go to <code>android/app/src/main/AndroidManifest.xml</code> and enter android App Id
+                                    as shown in below image.<br>
+                                    <img src="images/app/google-ads-1.webp"  />
+                                </li>
+                        
+                                <li>
+                                    For <strong>IOS</strong>, go to <code>ios/Runner/Info.plist</code> and enter IOS App Id as shown in below
+                                    image.<br>
+                                    <img src="images/app/google-ads-2.webp"/>
+                                </li>
+                        
+                                <li>
+                                    Go to <code>Settings > Ads.Settings</code> in admin panel and add AdMob ad ids as shown in below image.
+                                    <img src="images/app/add-googe-ad-ids.webp"/>
+                                </li>
+                            </ol>
+
+                            <h5> Unity Ads</h5>
+                            Go to <code>Settings > Ads.Settings</code> in admin panel and add Unity ad ids as shown in below image.
+                            <img src="images/app/add-unity-ad-ids.webp"/>
+                            <hr>
+                        </section>
+
+                        <section id="howToChangeIntroSlideImages">
+                            <h4>Change intro slider images</h4>
+                            <li>
+                                Update SVGs in <code>assets/images</code> folder using the same filenames shown in the images.
+                                <img src="images/app/introSlider.webp"/>
+                            </li>
+                            <hr>
+                        </section>
+
+
+                        <section id="howToChangeDefaultProfileImages">
+                            <h4>Change default profile avatar images</h4>
+                            <ol>
+                                <li>
+                                    Update Avatars in <code>assets/images/profile</code> folder using the same filenames preferably shown in the images.
+                                    <img src="images/app/profilePictures.webp"/>
+                                </li>
+                                <li>
+                                    Then add those filenames in <code>assets/files/defaultProfileImages.json</code> file.
+                                    <img src="images/app/profilePictures2.webp"/>
+                                </li>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="howToConfigureInAppPurchase">
+                            <h4>Configure In-App purchases</h4>
+                            For creating in-app purchase products refer to the documentation here: <a href="https://developer.apple.com/in-app-purchase/">Apple</a>,
+                            <a href="https://support.google.com/googleplay/android-developer/answer/1153481?hl=en#zippy=%2Ccreate-a-single-in-app-product/">Google</a>
+                            <br>
+                            <h5>For android (Play Store)</h5>
+                            <ul>
+                                <li>
+                                    Upload your application to the Play Store and create in-app products as shown in the image.
+                                    Ensure that the ID of consumable products in both Apple and Play Store is the same.
+                                    <br>
+                                    <img src="images/app/in-app-purchase-1.webp"/>
+                                </li>
+                            </ul>
+                            <h5>For IOS (App Store)</h5>
+                            <ul>
+                                <li>
+                                    Open the <code>ios</code> folder of the project into Xcode. Go to Capabilities. And enable "In-App Purchase" as shown in image.
+                                    <img src="images/app/in-app-purchase-2.webp"/>
+                                </li>
+                                <li>
+                                    use the following links to get help enabling in-app purchases:<br>
+                                    <a href="https://help.apple.com/app-store-connect/#/devae49fb316">https://help.apple.com/app-store-connect/#/devae49fb316</a><br>
+                                    <a href="https://help.apple.com/app-store-connect/#/devb57be10e7">https://help.apple.com/app-store-connect/#/devb57be10e7</a><br>
+                                    For further assistance, refer to the official Apple Developer documentation on in-app purchases at: <a href="https://developer.apple.com/in-app-purchase/">https://developer.apple.com/in-app-purchase/</a>
+                                </li>
+                            </ul>
+                            <h5>Add In-App products from Admin Panel</h5>
+                            <ul>
+                                <li>
+                                    Then After creating in-app purchase products, add their respective coins and productIds in <code>Admin Panel > Settings > Coin Store Settings</code> as shown in image.
+                                    <img src="images/app/in-app-purchase-3.webp" />
+                                </li>
+                            </ul>
+                            <br><hr>
+                        </section>
+
+
+                        <section id="howToEnableMessageInBattle">
+                            <h4>Enable message feature in battles</h4>
+                            To enable sending messages and emojis in Battle rooms you need to do this setup.
+                            <ol>
+                                <li>
+                                    Go to your firebase project, <code>Firestore Database -> Indexes</code> and create a composite query index as shown in below images.
+                                    <br>
+                                    <img src="images/app/battle-message-1.webp"  />
+                                    <img src="images/app/battle-message-2.webp"  />
+                                    <img src="images/app/battle-message-3.webp"  />
+                                </li>
+                                <li>
+                                    Then from <code>lib/utils/constants/constants.dart</code> you can add/modify <code>predefinedMessages</code> a list of predefined messages as per your liking.
+                                    <br>
+                                    <img src="images/app/battle-message-4.webp"  />
+                                </li>
+                                <li>
+                                    You can update the emojis from <code>assets/images/emojis/</code>. These emojis must be SVGs.
+                                    <img src="images/app/battle-message-5.webp"  />
+                                </li>
+                                <li>
+                                    Any additional emojis that you might have added you also need to add them in <code>assets/files/emojis.json</code>
+                                    <img src="images/app/battle-message-6.webp"  />
+                                </li>
+                            </ol>
+                            <br><hr>
+                        </section>
+
+                        <section id="howToConfigureForceUpdate">
+                            <h4>Configure force update</h4>
+                            You can require users to update to the latest app version by specifying it in the Play/App Store. Upon opening the app, a pop-up will prompt them to update.
+                            <ol>
+                                <li>
+                                    To do that go to admin panel, <code>Settings -> System Configurations</code> and enable force update.
+                                    <br>
+                                    <img src="images/app/force-update.webp" />
+                                </li>
+                                <li>
+                                    Go to pubspec.yaml and copy the version number of application.
+                                    <br>
+                                    <img src="images/app/force-update-2.webp" />
+                                </li>
+                                <li>Enter the version number that we just copied into, Android and Ios Version fields.
+                                    <br>
+                                    <img src="images/app/force-update-3.webp" />
+                                </li>
+                                <li>
+                                    Add the App Store & Play Store links to your app. And make sure that links are correct, otherwise force update will not work as expected.
+                                    <br>
+                                    <img src="images/app/force-update-4.webp"  />
+                                </li>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="manageBadges">
+                            <h4>Manage Badges</h4>
+                            <ol>
+                                <li>
+                                    Manage badges from here
+                                    <img src="images/app/manage-badges.webp"  />
+                                </li>
+                                <li>
+                                    To unlock badges like Super Sonic, Flashback and Brainiac minimum question is set to
+                                    5.<br>
+                                    You can change that as shown in below image.
+                                    <img src="images/app/manage-badges-1.webp"  />
+                                </li>
+                                <li>
+                                    To unlock badges like Combat Winner, Clash Winner and Quiz Warrior winner must be
+                                    declared by completing battle.<br>
+                                </li>
+                                <li>
+                                    To get more information about how badges works <a href="files/badges.txt">click here</a>.
+                                </li>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="howToSetupExamModule">
+                            <h4>Setup Exams</h4>
+                            <ol>
+                                <li>
+                                    Go to admin panel, <code>Settings -> System Configurations</code> and enable exam module as shown in image.
+                                    <br>
+                                    <img src="images/app/exam-module-1.webp"  />
+                                </li>
+                                <li>
+                                    If you want to update the exam rules you can do so by updating <code>examRules</code> in <code>lib/utils/constants/constants.dart</code>
+                                    <br>
+                                    <img src="images/app/exam-module-2.webp"  />
+                                </li>
+                            </ol>
+                            <hr>
+                        </section>
+
+                        <section id="howToSetupEarningModule">
+                            <h4>Setup earning module</h4>
+                            <ol>
+                                <li>
+                                    To set up the earning module for users to redeem coins, access the Admin Panel and go to <code>Settings -> Payment Settings</code>.<br>
+                                    Users can convert earned coins to real money with customizable conversion rates. For example here, per <code>10 Coins</code> user will get <code>1 Amount</code>.<br>
+                                    Amount here refers to the real money. And <code>Currency Symbol</code> will be used for the amount.<br>
+                                    <img src="images/app/earning-module-1.webp"  />
+                                </li>
+                                <li>
+                                    You can also modify the notes that will be shown to user when they redeem the coins, and for that go to <code>lib/utils/constants/constants.dart</code>
+                                    <br>
+                                    <img src="images/app/earning-module-2.webp"  />
+                                </li>
+                                <li>
+                                    From there you also have the option to add or update payment methods.<br>
+                                    These methods require manual approval by the <code>Admin</code>, who then proceeds to send the actual funds to the users through their chosen payment options specified in this section.<br>
+                                    <img src="images/app/earning-module-3.webp"/>
+                                </li>
+                                <li>
+                                    <code>Admin</code> can view and process payment requests in the <code>Payment Requests</code> section of their Admin Panel.
+                                    <br>
+                                    <img src="images/app/earning-module-4.webp"/>
+                                </li>
+                            </ol>
+                            <br><hr>
+                        </section>
+
+                        <section id="howToSetupTimer">
+                            <h4>Configure quiz timers, score and coins management</h4>
+                            <img src="images/app/adminTimer.webp"/>
+                            <ul>
+                                <li>Maximum Winning Coins : The highest coins users can earn based on their correct answers percentage in the quiz.</li>
+                                <li>Minimum Winning Percentage: The minimum correct answers percentage needed to earn <code>Maximum Winning Coins</code>.</li>
+                                <li>Score: Points awarded per correct answer.</li>
+                                <li>Timer Settings : Customize quiz durations from here.</li>
+                                <li>Welcome Bonus : coins received on initial login.</li>
+                                <li>Lifeline Deduct : adjust coins needed for using lifeline.</li>
+                                <li>Random Battle Entry : base entry fee for playing random battles.</li>
+                                <li>Review Answers Deduct : coins deducted for reviewing quiz answers.</li>
+                            </ul>
+                            <br><hr>
+                        </section>
+
+                        <section id="howToAppConstants">
+                            <h4>Change app constants</h4>
+                            <ol>
+                                <li>
+                                    In addition to modifying <code>System Configurations</code> and <code>System Utilities</code>,
+                                    you have the option to make specific changes to certain application aspects through the <code>lib/utils/constants/constants.dart</code> file.<br><br>
+                                    These include altering Sound files, setting the <code>initialSelectedCountryCode</code> for the default country selection in the Phone login screen,<br>
+                                    defining <code>maxPhoneNumberLength</code> to limit the phone number length based on your country, adjusting the wait duration for opponents in battles, setting the in-between questions duration, modifying the deduction for wrong answers,
+                                    and configuring extra points for the quickest answers, among other possibilities.
+                                    <img src="images/app/changeOtherConstants.webp" />
+                                </li>
+                                <li>To modify coin distribution, access <code>lib/utils/ui_utils.dart</code> and update the equation according to your preferences.
+                                    <img src="images/app/coinsEquation.webp" />
+                                </li>
+                            </ol>
+                            <br><hr>
+                        </section>
+
+                        <section id="howToGenerateReleaseVersion">
+                            <h4>Generate release version of this product</h4>
+                            To generate the release version of this application, please refer to the platform-specific guides: <a href="https://flutter.dev/docs/deployment/android">Android</a> <a href="https://flutter.dev/docs/deployment/ios">IOS</a>.<br>
+                            <strong>Important:</strong> Before deploying to IOS, ensure that the "China" option is unchecked as demonstrated in the image below.
+                            <img src="images/app/appAvailability.webp"/>
+                            <br><br>
+                        </section>
+                        <br><hr>
+                    </section>
+
+                    <section id="faq">
+                        <h3>FAQ & Common Issues</h3>
+                        <ol>
+                            <li>If you are seeing warnings on admin panel after the installation, then check if the warning contains <code>ini_set()</code>
+                                <img class="img-fluid border" src="images/panel/ob_start.webp" />
+                                <h5>Solution:</h5>
+                                <p>Then Add <code>ob_start();</code> in your <code>index.php</code> file, like shown in the image.</p>
+                                <p>
+                                    <img class="img-fluid border" src="images/panel/ob_start-ans.png" style="max-width: 50%;"/>
+                                </p>
+                            </li>
+                        </ol>
+                        <h6></h6>
+
+                        <h5>For data safety issues in the Play Store or app rejection, watch the given tutorial below to resolve the problem.</h5>
+                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/f8rjX7_QL44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                            <a href="https://www.youtube.com/watch?v=f8rjX7_QL44">https://www.youtube.com/watch?v=f8rjX7_QL44</a>
+                        </iframe>
+                    </section>
+                    <br><hr>
+
+                    <section id="support">
+                        <h3>Contact Support</h3>
+                        Delighted to serve and support you! Contact our support team lead by Jay Parmar on <a href="https://join.skype.com/invite/yBJSdYmXXLqX">Skype</a>.<br><br>
+                        <strong>We're available Mon-Fri, 9:00 am - 6:00 pm IST (GMT +5.30), India - Asia.</strong><br><br>
+                        Expect prompt responses within 24 hours via comments, forum, or email.<br>
+                    <br><hr>
+                    </section>
+
+                    <section id="rating">
+                        <h3>Your Feedback</h3>
+                        We highly appreciate your decision to choose our product. Providing top-notch service is our priority, and we value your feedback.<br>
+                        Kindly take a moment to rate us by clicking <a href="https://codecanyon.net/item/elite-quiz-the-flutter-quiz-app/33570423">the link</a>.
+                        Your honest input helps us improve and deliver the best experience possible.<br>
+                    <br><hr>
+                    </section>
+
+                    <section id="contactus">
+                        <h3>Reach Us</h3>
+                        <p>
+                            Unlock the potential of WRTeam, your go-to hub for top-notch Flutter app development and web applications.<br>
+                            Reach out to us today for quality solutions and exciting freelance opportunities.<br><br>
+                            Visit us at <a href="https://wrteam.in/">wrteam.in</a> or drop an email to <a href="mailto:support+elitedoc@wrteam.in">support@wrteam.in</a>.<br><br>
+                            Thank you for considering us!
+                        </p>
+                        <hr><br>
+                    </section>
+
+                
+
+                    <section id="changelogs">
+                        <h2>Changelogs</h2>
+                        <p class="text-4">See what's new added, changed, fixed, improved or updated in the latest versions. </p>
+                        
+                        <h3> Version 2.1.2 <small class="text-muted">(21 Sep, 2023)</small></h3>
+                        <ul class="changelog">
+                            <li><span class="badge badge-success">Added</span>
+                                🤖 <strong>1v1 Battles with Bots:</strong> No opponent? No problem! Battle out AI bots for non-stop gaming fun!
+                            </li>
+                            <li><span class="badge badge-success">Added</span>
+                                🌟 <strong>Premium Quiz Categories:</strong> Elevate your quiz game with Premium Categories and Subcategories, available in all the quizzes!.
+                            </li>
+                            <li><span class="badge badge-info">Updated</span>
+                                🍏 <strong>Apple Login Upgrade:</strong> We've migrated to the <code>sign_in_with_apple</code> package for secure Apple login.
+                            </li>
+                            <li><span class="badge badge-info">Improved</span>
+                                🧹 <strong>App Optimization:</strong> Trimmed down app size by removing unused packages and code.
+                            </li>
+                            <li><span class="badge badge-info">Improved</span>
+                                🚀 <strong>Code Refinement:</strong> Cleaner and more efficient codebase.
+                            </li>
+
+                            <li><strong>Admin Panel Specific</strong></li>
+                            <li><span class="badge badge-success">Added</span>
+                                🚀 <strong>Premium Quiz Categories:</strong> Create and edit premium categories/subcategories.
+                            </li>
+                            <li><span class="badge badge-success">Added</span>
+                                🌟 <strong>Revamped Login Page Design Experience:</strong> Customize it with Your Own Background Image for a Unique Touch.
+                            </li>
+                            <li><span class="badge badge-success">Added</span>
+                                🎨 <strong>Custom Bot Image:</strong> Personalize your Bot's look easily from the Admin Panel! 
+                            </li>
+                            <li><span class="badge badge-danger">Fixed</span>
+                                🔐 <strong>Reinforced Security:</strong> We've brought back the JWT Key input for enhanced security within the admin panel.
+                            </li>
+                        </ul>
+                        <hr><br><br>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+        <!-- Content end -->
+    </div>
+    <!-- Document Wrapper end -->
+
+    <!-- Back To Top -->
+    <a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:void(0)"><i class="fa fa-chevron-up"></i></a>
+    <!-- JavaScript -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Easing -->
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <!-- Custom Script -->
+    <script src="assets/js/theme.js"></script>
+</body>
+</html>
