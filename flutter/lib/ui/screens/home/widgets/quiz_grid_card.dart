@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class QuizGridCard extends StatelessWidget {
   const QuizGridCard({
@@ -37,7 +38,24 @@ class QuizGridCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: LayoutBuilder(
+      child: Container(
+        margin: EdgeInsets.only(top: 24),
+        padding: EdgeInsets.all(6),
+          decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
+          child: LayoutBuilder(
         builder: (_, constraints) {
           var cSize = constraints.maxWidth;
           final iconSize = cSize * .28;
@@ -45,23 +63,7 @@ class QuizGridCard extends StatelessWidget {
 
           return Stack(
             children: [
-              /// Box Shadow
-              Positioned(
-                top: 0,
-                left: cSize * 0.2,
-                right: cSize * 0.2,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    boxShadow: _boxShadow,
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(cSize * .525),
-                    ),
-                  ),
-                  width: cSize,
-                  height: cSize * .6,
-                ),
-              ),
+            
 
               /// Card
               Container(
@@ -131,6 +133,12 @@ class QuizGridCard extends StatelessWidget {
           );
         },
       ),
+
+      )
     );
   }
 }
+
+
+
+

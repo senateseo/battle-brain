@@ -103,7 +103,7 @@ class _OnboardingPagerTypeThreeState extends State<OnboardingPagerTypeThree> {
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: ButtonTheme(
                         minWidth: MediaQuery.of(context).size.width,
-                        child: RaisedButton(
+                        child: MaterialButton(
                           padding: EdgeInsets.all(16),
                           color: wood_smoke,
                           onPressed: () {

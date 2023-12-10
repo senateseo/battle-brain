@@ -87,7 +87,7 @@ class _OnboardingPagerTypeOneState extends State<OnboardingPagerTypeOne> {
                     flex: 1,
                     child: Padding(
                       padding: const EdgeInsets.only(right: 6),
-                      child: RaisedButton(
+                      child: MaterialButton(
                         padding: EdgeInsets.all(16),
                         color: white,
                         textColor: black,
@@ -109,7 +109,7 @@ class _OnboardingPagerTypeOneState extends State<OnboardingPagerTypeOne> {
                     flex: 1,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 6),
-                      child: RaisedButton(
+                      child: MaterialButton(
                         padding: EdgeInsets.all(16),
                         color: wood_smoke,
                         onPressed: () {

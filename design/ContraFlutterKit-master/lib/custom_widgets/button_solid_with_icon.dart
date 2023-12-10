@@ -27,7 +27,7 @@ class ButtonPlainWithIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return ButtonTheme(
       minWidth: size != null ? size! : MediaQuery.of(context).size.width,
-      child: RaisedButton(
+      child: MaterialButton(
         padding: EdgeInsets.all(16),
         color: color,
         onPressed: callback,

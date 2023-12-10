@@ -79,7 +79,7 @@ class OnboardPageTypeFour extends StatelessWidget {
                             left: 24.0, top: 8, right: 24),
                         child: ButtonTheme(
                           minWidth: MediaQuery.of(context).size.width,
-                          child: RaisedButton(
+                          child: MaterialButton(
                             padding: EdgeInsets.all(16),
                             color: wood_smoke,
                             onPressed: () {

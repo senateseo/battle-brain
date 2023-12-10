@@ -26,7 +26,7 @@ class ButtonPlain extends StatelessWidget {
     return ButtonTheme(
       height: height != null ? height! : 48,
       minWidth: size != null ? size! : MediaQuery.of(context).size.width,
-      child: RaisedButton(
+      child: MaterialButton(
         padding: EdgeInsets.all(16),
         color: color,
         onPressed: onTap,
