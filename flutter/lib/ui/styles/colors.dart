@@ -7,7 +7,7 @@ const Color secondaryColor = Color(0xffED5588);
 const Color backgroundColor = Color(0xffffffff);
 const Color pageBackgroundColor = Color(0xffF3F7FA);
 const Color onBackgroundColor = Color(0xff24272D);
-const Color primaryTxtColor = Color(0xff45536d);
+const Color primaryTxtColor = Color(0xff000000);
 const Color kBoxShadowColor = Color(0x40000000);
 const Color levelLockedColor = Color(0xffe8e8e8);
 

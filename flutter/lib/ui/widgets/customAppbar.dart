@@ -12,7 +12,7 @@ class QAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.roundedAppBar = true,
     this.removeSnackBars = true,
     this.bottom,
-    this.bottomHeight = 52,
+    this.bottomHeight = 64,
     this.usePrimaryColor = false,
     this.actions,
     this.automaticallyImplyLeading = true,
@@ -61,13 +61,13 @@ class QAppBar extends StatelessWidget implements PreferredSizeWidget {
               color: usePrimaryColor ? Theme.of(context).primaryColor : null,
             )
           : const SizedBox(),
-      titleTextStyle: GoogleFonts.nunito(
+      titleTextStyle: GoogleFonts.montserrat(
         textStyle: TextStyle(
           color: usePrimaryColor
               ? Theme.of(context).primaryColor
               : colorScheme.onTertiary,
-          fontWeight: FontWeights.bold,
-          fontSize: 18.0,
+          fontWeight: FontWeights.extrabold,
+          fontSize: 24.0,
         ),
       ),
       title: title,
@@ -79,7 +79,7 @@ class QAppBar extends StatelessWidget implements PreferredSizeWidget {
                 margin: EdgeInsets.symmetric(
                   horizontal:
                       MediaQuery.of(context).size.width * UiUtils.hzMarginPct,
-                  vertical: 16,
+                  vertical: 20,
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterquiz/ui/custom_widgets/button_round_with_shadow.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class CustomBackButton extends StatelessWidget {
   final bool? removeSnackBars;
@@ -25,18 +27,17 @@ class CustomBackButton extends StatelessWidget {
           : () {
               onTap?.call();
             },
-      child: Container(
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.transparent),
-        ),
-        child: Icon(
-          Icons.arrow_back_rounded,
-          size: 22.5,
-          color: iconColor ?? Theme.of(context).colorScheme.onTertiary,
-        ),
-      ),
-    );
+      child: ButtonRoundWithShadow(
+                      size: 1,
+                      borderColor: wood_smoke,
+                      color: white,
+                      callback: () {
+                        Navigator.pop(context);
+                      },
+                      shadowColor: wood_smoke,
+                      iconPath: "assets/images/back.svg"),
+                );
+    
   }
 }
 
@@ -54,18 +55,26 @@ class QBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: onTap ??
-          () {
-            Navigator.pop(context);
-            if (removeSnackBars) {
-              ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    return InkWell(
+      onTap: onTap == null
+          ? () {
+              Navigator.pop(context);
+              if (removeSnackBars != null && removeSnackBars!) {
+                ScaffoldMessenger.of(context).removeCurrentSnackBar();
+              }
             }
-          },
-      iconSize: 24,
-      padding: const EdgeInsets.all(8),
-      color: color ?? Theme.of(context).colorScheme.onTertiary,
-      icon: const Icon(Icons.arrow_back_rounded),
-    );
+          : () {
+              onTap?.call();
+            },
+      child: ButtonRoundWithShadow(
+                      size: 8,
+                      borderColor: wood_smoke,
+                      color: white,
+                      callback: () {
+                        Navigator.pop(context);
+                      },
+                      shadowColor: wood_smoke,
+                      iconPath: "assets/icons/arrow_back.svg"),
+                );
   }
 }
