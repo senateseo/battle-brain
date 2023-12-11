@@ -1357,378 +1357,378 @@ class _HomeScreenState extends State<HomeScreen>
       child: Column(
         children: [
           /// Contest Section Title
-          Row(
-            children: [
-              Text(
-                AppLocalization.of(context)!.getTranslatedValues(contest) ??
-                    contest,
-                style: _boldTextStyle,
-              ),
-              const Spacer(),
-              GestureDetector(
-                onTap: onTapViewAll,
-                child: Text(
-                  AppLocalization.of(context)
-                          ?.getTranslatedValues(viewAllKey) ??
-                      viewAllKey,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .onTertiary
-                        .withOpacity(0.6),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
+          // Row(
+          //   children: [
+          //     Text(
+          //       AppLocalization.of(context)!.getTranslatedValues(contest) ??
+          //           contest,
+          //       style: _boldTextStyle,
+          //     ),
+          //     const Spacer(),
+          //     GestureDetector(
+          //       onTap: onTapViewAll,
+          //       child: Text(
+          //         AppLocalization.of(context)
+          //                 ?.getTranslatedValues(viewAllKey) ??
+          //             viewAllKey,
+          //         style: TextStyle(
+          //           fontSize: 14,
+          //           fontWeight: FontWeight.w600,
+          //           color: Theme.of(context)
+          //               .colorScheme
+          //               .onTertiary
+          //               .withOpacity(0.6),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // const SizedBox(height: 10),
 
           /// Contest Card
-          BlocConsumer<ContestCubit, ContestState>(
-            bloc: context.read<ContestCubit>(),
-            listener: (context, state) {
-              if (state is ContestFailure) {
-                if (state.errorMessage == errorCodeUnauthorizedAccess) {
-                  UiUtils.showAlreadyLoggedInDialog(context: context);
-                }
-              }
-            },
-            builder: (context, state) {
-              if (state is ContestFailure) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  height: 100,
-                  alignment: Alignment.center,
-                  child: Text(
-                    AppLocalization.of(context)!.getTranslatedValues(
-                      convertErrorCodeToLanguageKey(state.errorMessage),
-                    )!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeights.regular,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    maxLines: 2,
-                  ),
-                );
-              }
+          // BlocConsumer<ContestCubit, ContestState>(
+          //   bloc: context.read<ContestCubit>(),
+          //   listener: (context, state) {
+          //     if (state is ContestFailure) {
+          //       if (state.errorMessage == errorCodeUnauthorizedAccess) {
+          //         UiUtils.showAlreadyLoggedInDialog(context: context);
+          //       }
+          //     }
+          //   },
+          //   builder: (context, state) {
+          //     if (state is ContestFailure) {
+          //       return Container(
+          //         decoration: BoxDecoration(
+          //           color: Theme.of(context).colorScheme.background,
+          //           borderRadius: BorderRadius.circular(10),
+          //         ),
+          //         height: 100,
+          //         alignment: Alignment.center,
+          //         child: Text(
+          //           AppLocalization.of(context)!.getTranslatedValues(
+          //             convertErrorCodeToLanguageKey(state.errorMessage),
+          //           )!,
+          //           textAlign: TextAlign.center,
+          //           style: TextStyle(
+          //             fontSize: 16,
+          //             fontWeight: FontWeights.regular,
+          //             color: Theme.of(context).primaryColor,
+          //           ),
+          //           maxLines: 2,
+          //         ),
+          //       );
+          //     }
 
-              if (state is ContestSuccess) {
-                final colorScheme = Theme.of(context).colorScheme;
-                final textStyle = GoogleFonts.nunito(
-                  textStyle: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeights.regular,
-                    color: colorScheme.onTertiary.withOpacity(0.6),
-                  ),
-                );
+          //     if (state is ContestSuccess) {
+          //       final colorScheme = Theme.of(context).colorScheme;
+          //       final textStyle = GoogleFonts.montserrat(
+          //         textStyle: TextStyle(
+          //           fontSize: 14,
+          //           fontWeight: FontWeights.regular,
+          //           color: colorScheme.onTertiary.withOpacity(0.6),
+          //         ),
+          //       );
 
-                ///
-                final live = state.contestList.live;
+          //       ///
+          //       final live = state.contestList.live;
 
-                /// No Contest
-                if (live.errorMessage.isNotEmpty) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: colorScheme.background,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    height: 100,
-                    alignment: Alignment.center,
-                    child: Text(
-                      AppLocalization.of(context)!.getTranslatedValues(
-                        convertErrorCodeToLanguageKey(live.errorMessage),
-                      )!,
-                      style: _boldTextStyle.copyWith(
-                        fontSize: 16,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  );
-                }
+          //       /// No Contest
+          //       if (live.errorMessage.isNotEmpty) {
+          //         return Container(
+          //           decoration: BoxDecoration(
+          //             color: colorScheme.background,
+          //             borderRadius: BorderRadius.circular(10),
+          //           ),
+          //           height: 100,
+          //           alignment: Alignment.center,
+          //           child: Text(
+          //             AppLocalization.of(context)!.getTranslatedValues(
+          //               convertErrorCodeToLanguageKey(live.errorMessage),
+          //             )!,
+          //             style: _boldTextStyle.copyWith(
+          //               fontSize: 16,
+          //               color: Theme.of(context).primaryColor,
+          //             ),
+          //           ),
+          //         );
+          //       }
 
-                final contest = live.contestDetails.first;
-                final entryFee = int.parse(contest.entry!);
+          //       final contest = live.contestDetails.first;
+          //       final entryFee = int.parse(contest.entry!);
 
-                return SizedBox(
-                  height: 140,
-                  width: scrWidth,
-                  child: LayoutBuilder(
-                    builder: (context, constraints) {
-                      final maxWidth = constraints.maxWidth;
-                      final maxHeight = constraints.maxHeight;
+          //       return SizedBox(
+          //         height: 140,
+          //         width: scrWidth,
+          //         child: LayoutBuilder(
+          //           builder: (context, constraints) {
+          //             final maxWidth = constraints.maxWidth;
+          //             final maxHeight = constraints.maxHeight;
 
-                      void onTapPlayNow() {
-                        var userDetailsCubit = context.read<UserDetailsCubit>();
+          //             void onTapPlayNow() {
+          //               var userDetailsCubit = context.read<UserDetailsCubit>();
 
-                        if (int.parse(userDetailsCubit.getCoins()!) >=
-                            entryFee) {
-                          context.read<UpdateScoreAndCoinsCubit>().updateCoins(
-                                _userId,
-                                entryFee,
-                                false,
-                                AppLocalization.of(context)!
-                                        .getTranslatedValues(
-                                            playedContestKey) ??
-                                    "-",
-                              );
-                          userDetailsCubit.updateCoins(
-                            addCoin: false,
-                            coins: entryFee,
-                          );
+          //               if (int.parse(userDetailsCubit.getCoins()!) >=
+          //                   entryFee) {
+          //                 context.read<UpdateScoreAndCoinsCubit>().updateCoins(
+          //                       _userId,
+          //                       entryFee,
+          //                       false,
+          //                       AppLocalization.of(context)!
+          //                               .getTranslatedValues(
+          //                                   playedContestKey) ??
+          //                           "-",
+          //                     );
+          //                 userDetailsCubit.updateCoins(
+          //                   addCoin: false,
+          //                   coins: entryFee,
+          //                 );
 
-                          Navigator.of(context)
-                              .pushNamed(Routes.quiz, arguments: {
-                            "numberOfPlayer": 1,
-                            "quizType": QuizTypes.contest,
-                            "contestId": contest.id,
-                            "quizName": "Contest"
-                          });
-                        } else {
-                          UiUtils.setSnackbar(
-                            AppLocalization.of(context)!
-                                .getTranslatedValues(noCoinsMsg)!,
-                            context,
-                            false,
-                          );
-                        }
-                      }
+          //                 Navigator.of(context)
+          //                     .pushNamed(Routes.quiz, arguments: {
+          //                   "numberOfPlayer": 1,
+          //                   "quizType": QuizTypes.contest,
+          //                   "contestId": contest.id,
+          //                   "quizName": "Contest"
+          //                 });
+          //               } else {
+          //                 UiUtils.setSnackbar(
+          //                   AppLocalization.of(context)!
+          //                       .getTranslatedValues(noCoinsMsg)!,
+          //                   context,
+          //                   false,
+          //                 );
+          //               }
+          //             }
 
-                      return Stack(
-                        children: [
-                          /// Shadow
-                          Positioned(
-                            top: 0,
-                            left: maxWidth * .1,
-                            right: maxWidth * .1,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    offset: Offset(0, 40),
-                                    blurRadius: 30,
-                                    spreadRadius: 5,
-                                    color: Color(0xbf000000),
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.vertical(
-                                  bottom: Radius.circular(maxWidth * .525),
-                                ),
-                              ),
-                              width: maxWidth,
-                              height: maxHeight * .6,
-                            ),
-                          ),
+          //             return Stack(
+          //               children: [
+          //                 /// Shadow
+          //                 Positioned(
+          //                   top: 0,
+          //                   left: maxWidth * .1,
+          //                   right: maxWidth * .1,
+          //                   child: Container(
+          //                     decoration: BoxDecoration(
+          //                       color: Colors.transparent,
+          //                       boxShadow: const [
+          //                         BoxShadow(
+          //                           offset: Offset(0, 40),
+          //                           blurRadius: 30,
+          //                           spreadRadius: 5,
+          //                           color: Color(0xbf000000),
+          //                         ),
+          //                       ],
+          //                       borderRadius: BorderRadius.vertical(
+          //                         bottom: Radius.circular(maxWidth * .525),
+          //                       ),
+          //                     ),
+          //                     width: maxWidth,
+          //                     height: maxHeight * .6,
+          //                   ),
+          //                 ),
 
-                          ///
-                          Align(
-                            child: Container(
-                              height: maxHeight,
-                              width: maxWidth,
-                              decoration: BoxDecoration(
-                                color: colorScheme.background,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              padding: const EdgeInsets.all(12.5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      /// Contest Image
-                                      Container(
-                                        padding: const EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                          color: Colors.transparent,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border: Border.all(
-                                            color: Theme.of(context)
-                                                .scaffoldBackgroundColor,
-                                          ),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          child: CachedNetworkImage(
-                                            placeholder: (_, __) =>
-                                                const Center(
-                                              child:
-                                                  CircularProgressContainer(),
-                                            ),
-                                            memCacheWidth: 90,
-                                            memCacheHeight: 90,
-                                            errorWidget: (_, i, e) => Center(
-                                              child: Icon(
-                                                Icons.error,
-                                                color: Theme.of(context)
-                                                    .primaryColor,
-                                              ),
-                                            ),
-                                            width: 45,
-                                            height: 45,
-                                            fit: BoxFit.cover,
-                                            imageUrl: contest.image.toString(),
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 8),
+          //                 ///
+          //                 Align(
+          //                   child: Container(
+          //                     height: maxHeight,
+          //                     width: maxWidth,
+          //                     decoration: BoxDecoration(
+          //                       color: colorScheme.background,
+          //                       borderRadius: BorderRadius.circular(10),
+          //                     ),
+          //                     padding: const EdgeInsets.all(12.5),
+          //                     child: Column(
+          //                       crossAxisAlignment: CrossAxisAlignment.start,
+          //                       mainAxisAlignment:
+          //                           MainAxisAlignment.spaceBetween,
+          //                       mainAxisSize: MainAxisSize.max,
+          //                       children: [
+          //                         Row(
+          //                           crossAxisAlignment:
+          //                               CrossAxisAlignment.start,
+          //                           children: [
+          //                             /// Contest Image
+          //                             Container(
+          //                               padding: const EdgeInsets.all(5),
+          //                               decoration: BoxDecoration(
+          //                                 color: Colors.transparent,
+          //                                 borderRadius:
+          //                                     BorderRadius.circular(10),
+          //                                 border: Border.all(
+          //                                   color: Theme.of(context)
+          //                                       .scaffoldBackgroundColor,
+          //                                 ),
+          //                               ),
+          //                               child: ClipRRect(
+          //                                 borderRadius:
+          //                                     BorderRadius.circular(5),
+          //                                 child: CachedNetworkImage(
+          //                                   placeholder: (_, __) =>
+          //                                       const Center(
+          //                                     child:
+          //                                         CircularProgressContainer(),
+          //                                   ),
+          //                                   memCacheWidth: 90,
+          //                                   memCacheHeight: 90,
+          //                                   errorWidget: (_, i, e) => Center(
+          //                                     child: Icon(
+          //                                       Icons.error,
+          //                                       color: Theme.of(context)
+          //                                           .primaryColor,
+          //                                     ),
+          //                                   ),
+          //                                   width: 45,
+          //                                   height: 45,
+          //                                   fit: BoxFit.cover,
+          //                                   imageUrl: contest.image.toString(),
+          //                                 ),
+          //                               ),
+          //                             ),
+          //                             const SizedBox(width: 8),
 
-                                      /// Contest Name & Description
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              contest.name.toString(),
-                                              style: _boldTextStyle.copyWith(
-                                                  fontSize: 16),
-                                            ),
-                                            Text(
-                                              contest.description.toString(),
-                                              softWrap: true,
-                                              textAlign: TextAlign.left,
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 2,
-                                              style: textStyle,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10),
+          //                             /// Contest Name & Description
+          //                             Expanded(
+          //                               child: Column(
+          //                                 crossAxisAlignment:
+          //                                     CrossAxisAlignment.start,
+          //                                 children: [
+          //                                   Text(
+          //                                     contest.name.toString(),
+          //                                     style: _boldTextStyle.copyWith(
+          //                                         fontSize: 16),
+          //                                   ),
+          //                                   Text(
+          //                                     contest.description.toString(),
+          //                                     softWrap: true,
+          //                                     textAlign: TextAlign.left,
+          //                                     overflow: TextOverflow.ellipsis,
+          //                                     maxLines: 2,
+          //                                     style: textStyle,
+          //                                   ),
+          //                                 ],
+          //                               ),
+          //                             ),
+          //                           ],
+          //                         ),
+          //                         const SizedBox(height: 10),
 
-                                  ///
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          /// Entry Fees
-                                          Text.rich(
-                                            TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: AppLocalization.of(
-                                                          context)!
-                                                      .getTranslatedValues(
-                                                          "entryFeesLbl")!,
-                                                ),
-                                                const TextSpan(text: " : "),
-                                                TextSpan(
-                                                  text:
-                                                      "$entryFee ${AppLocalization.of(context)!.getTranslatedValues("coinsLbl")!}",
-                                                  style: textStyle.copyWith(
-                                                    color:
-                                                        colorScheme.onTertiary,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            style: textStyle,
-                                          ),
-                                          const SizedBox(height: 5),
+          //                         ///
+          //                         Row(
+          //                           mainAxisAlignment:
+          //                               MainAxisAlignment.spaceBetween,
+          //                           children: [
+          //                             Column(
+          //                               crossAxisAlignment:
+          //                                   CrossAxisAlignment.start,
+          //                               children: [
+          //                                 /// Entry Fees
+          //                                 Text.rich(
+          //                                   TextSpan(
+          //                                     children: [
+          //                                       TextSpan(
+          //                                         text: AppLocalization.of(
+          //                                                 context)!
+          //                                             .getTranslatedValues(
+          //                                                 "entryFeesLbl")!,
+          //                                       ),
+          //                                       const TextSpan(text: " : "),
+          //                                       TextSpan(
+          //                                         text:
+          //                                             "$entryFee ${AppLocalization.of(context)!.getTranslatedValues("coinsLbl")!}",
+          //                                         style: textStyle.copyWith(
+          //                                           color:
+          //                                               colorScheme.onTertiary,
+          //                                         ),
+          //                                       ),
+          //                                     ],
+          //                                   ),
+          //                                   style: textStyle,
+          //                                 ),
+          //                                 const SizedBox(height: 5),
 
-                                          /// Ends on
-                                          Text.rich(
-                                            style: textStyle,
-                                            TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: AppLocalization.of(
-                                                          context)!
-                                                      .getTranslatedValues(
-                                                          "endsOnLbl")!,
-                                                ),
-                                                const TextSpan(text: " : "),
-                                                TextSpan(
-                                                  text:
-                                                      "${contest.endDate}  |  ",
-                                                  style: textStyle.copyWith(
-                                                    color:
-                                                        colorScheme.onTertiary,
-                                                  ),
-                                                ),
-                                                TextSpan(
-                                                  text: contest.participants
-                                                      .toString(),
-                                                  style: textStyle.copyWith(
-                                                    color:
-                                                        colorScheme.onTertiary,
-                                                  ),
-                                                ),
-                                                const TextSpan(text: " : "),
-                                                TextSpan(
-                                                    text: AppLocalization.of(
-                                                            context)!
-                                                        .getTranslatedValues(
-                                                            "playersLbl")!),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+          //                                 /// Ends on
+          //                                 Text.rich(
+          //                                   style: textStyle,
+          //                                   TextSpan(
+          //                                     children: [
+          //                                       TextSpan(
+          //                                         text: AppLocalization.of(
+          //                                                 context)!
+          //                                             .getTranslatedValues(
+          //                                                 "endsOnLbl")!,
+          //                                       ),
+          //                                       const TextSpan(text: " : "),
+          //                                       TextSpan(
+          //                                         text:
+          //                                             "${contest.endDate}  |  ",
+          //                                         style: textStyle.copyWith(
+          //                                           color:
+          //                                               colorScheme.onTertiary,
+          //                                         ),
+          //                                       ),
+          //                                       TextSpan(
+          //                                         text: contest.participants
+          //                                             .toString(),
+          //                                         style: textStyle.copyWith(
+          //                                           color:
+          //                                               colorScheme.onTertiary,
+          //                                         ),
+          //                                       ),
+          //                                       const TextSpan(text: " : "),
+          //                                       TextSpan(
+          //                                           text: AppLocalization.of(
+          //                                                   context)!
+          //                                               .getTranslatedValues(
+          //                                                   "playersLbl")!),
+          //                                     ],
+          //                                   ),
+          //                                 ),
+          //                               ],
+          //                             ),
 
-                                      /// Play Now
-                                      GestureDetector(
-                                        onTap: onTapPlayNow,
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 8,
-                                            horizontal: 5,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            color: Theme.of(context)
-                                                .scaffoldBackgroundColor,
-                                          ),
-                                          child: Text(
-                                            AppLocalization.of(context)!
-                                                .getTranslatedValues(
-                                                    "playnowLbl")!,
-                                            style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                );
-              }
+          //                             /// Play Now
+          //                             GestureDetector(
+          //                               onTap: onTapPlayNow,
+          //                               child: Container(
+          //                                 padding: const EdgeInsets.symmetric(
+          //                                   vertical: 8,
+          //                                   horizontal: 5,
+          //                                 ),
+          //                                 decoration: BoxDecoration(
+          //                                   borderRadius:
+          //                                       BorderRadius.circular(8),
+          //                                   color: Theme.of(context)
+          //                                       .scaffoldBackgroundColor,
+          //                                 ),
+          //                                 child: Text(
+          //                                   AppLocalization.of(context)!
+          //                                       .getTranslatedValues(
+          //                                           "playnowLbl")!,
+          //                                   style: TextStyle(
+          //                                     fontSize: 16,
+          //                                     fontWeight: FontWeight.bold,
+          //                                     color: Theme.of(context)
+          //                                         .primaryColor,
+          //                                   ),
+          //                                 ),
+          //                               ),
+          //                             ),
+          //                           ],
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ],
+          //             );
+          //           },
+          //         ),
+          //       );
+          //     }
 
-              return const Center(child: CircularProgressContainer());
-            },
-          ),
+          //     return const Center(child: CircularProgressContainer());
+          //   },
+          // ),
         ],
       ),
     );
@@ -1789,8 +1789,8 @@ class _HomeScreenState extends State<HomeScreen>
                 _buildLiveContestSection(),
               ],
               _buildBattle(),
-              _buildExamSelf(),
-              _buildZones(),
+              // _buildExamSelf(),
+              // _buildZones(),
             ],
           ),
         ),

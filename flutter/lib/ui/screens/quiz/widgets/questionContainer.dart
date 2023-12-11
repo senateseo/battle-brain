@@ -4,6 +4,7 @@ import 'package:flutter_tex/flutter_tex.dart';
 import 'package:flutterquiz/features/quiz/models/question.dart';
 import 'package:flutterquiz/ui/widgets/circularProgressContainer.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class QuestionContainer extends StatelessWidget {
   final Question? question;
@@ -79,8 +80,20 @@ class QuestionContainer extends StatelessWidget {
         if (question!.imageUrl != null && question!.imageUrl!.isNotEmpty) ...[
           Container(
             width: MediaQuery.of(context).size.width,
-            decoration:
-                BoxDecoration(borderRadius: BorderRadius.circular(10.0)),
+            decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
             height: MediaQuery.of(context).size.height * (0.225),
             child: CachedNetworkImage(
               errorWidget: (context, image, _) => Center(

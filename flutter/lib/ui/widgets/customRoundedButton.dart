@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class CustomRoundedButton extends StatelessWidget {
   final String? buttonTitle;
@@ -24,7 +25,7 @@ class CustomRoundedButton extends StatelessWidget {
     this.elevation,
     required this.buttonTitle,
     this.onTap,
-    required this.radius,
+    this.radius = 16.0,
     this.shadowColor,
     required this.showBorder,
     required this.height,
@@ -35,6 +36,7 @@ class CustomRoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Material(
       shadowColor: shadowColor ?? Colors.black54,
       elevation: elevation ?? 0.0,
@@ -48,24 +50,29 @@ class CustomRoundedButton extends StatelessWidget {
           //
           alignment: Alignment.center,
           height: height,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(radius),
-            border: showBorder
-                ? Border.all(
-                    color: borderColor ??
-                        Theme.of(context).scaffoldBackgroundColor,
-                  )
-                : null,
-          ),
+          decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
           width: MediaQuery.of(context).size.width * widthPercentage,
           child: Text(
             "$buttonTitle",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.nunito(
+            style: GoogleFonts.montserrat(
               textStyle: TextStyle(
                 fontSize: textSize ?? 16.0,
-                color: titleColor ?? Theme.of(context).scaffoldBackgroundColor,
+                color: titleColor ?? Theme.of(context).primaryColor,
                 fontWeight: fontWeight ?? FontWeight.normal,
               ),
             ),

@@ -10,20 +10,20 @@ final appThemeData = {
   AppTheme.light: ThemeData(
     brightness: Brightness.light,
     canvasColor: onBackgroundColor,
-    fontFamily: GoogleFonts.nunito().fontFamily,
+    fontFamily: GoogleFonts.montserrat().fontFamily,
     primaryColor: primaryColor,
-    primaryTextTheme: GoogleFonts.nunitoTextTheme(),
+    primaryTextTheme: GoogleFonts.montserratTextTheme(),
     cupertinoOverrideTheme: NoDefaultCupertinoThemeData(
       textTheme: CupertinoTextThemeData(
-        textStyle: GoogleFonts.nunito(),
+        textStyle: GoogleFonts.montserrat(),
       ),
     ),
     scaffoldBackgroundColor: pageBackgroundColor,
     shadowColor: primaryColor.withOpacity(0.25),
-    textTheme: GoogleFonts.nunitoTextTheme(),
+    textTheme: GoogleFonts.montserratTextTheme(),
     tabBarTheme: TabBarTheme(
       labelColor: backgroundColor,
-      labelStyle: GoogleFonts.nunito(
+      labelStyle: GoogleFonts.montserrat(
         textStyle: const TextStyle(
           fontWeight: FontWeights.regular,
           fontSize: 14,
@@ -51,9 +51,9 @@ final appThemeData = {
         .copyWith(background: backgroundColor),
   ),
   AppTheme.dark: ThemeData(
-    primaryTextTheme: GoogleFonts.nunitoTextTheme(),
-    textTheme: GoogleFonts.nunitoTextTheme(),
-    fontFamily: GoogleFonts.nunito().fontFamily,
+    primaryTextTheme: GoogleFonts.montserratTextTheme(),
+    textTheme: GoogleFonts.montserratTextTheme(),
+    fontFamily: GoogleFonts.montserrat().fontFamily,
     shadowColor: darkPrimaryColor.withOpacity(0.25),
     brightness: Brightness.dark,
     primaryColor: darkPrimaryColor,
@@ -61,7 +61,7 @@ final appThemeData = {
     canvasColor: darkCanvasColor,
     tabBarTheme: TabBarTheme(
       labelColor: darkCanvasColor,
-      labelStyle: GoogleFonts.nunito(
+      labelStyle: GoogleFonts.montserrat(
         textStyle: const TextStyle(
           fontWeight: FontWeights.regular,
           fontSize: 14,
@@ -76,7 +76,7 @@ final appThemeData = {
     ),
     cupertinoOverrideTheme: NoDefaultCupertinoThemeData(
       textTheme: CupertinoTextThemeData(
-        textStyle: GoogleFonts.nunito(),
+        textStyle: GoogleFonts.montserrat(),
       ),
     ),
     highlightColor: Colors.transparent,

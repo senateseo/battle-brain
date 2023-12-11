@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterquiz/app/app_localization.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class SubcategoriesLevelChip extends StatefulWidget {
   final bool isLevelUnlocked;
@@ -52,10 +53,20 @@ class _SubcategoriesLevelChipState extends State<SubcategoriesLevelChip> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(25),
-      ),
+      decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    4.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
       width: widget.width,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(

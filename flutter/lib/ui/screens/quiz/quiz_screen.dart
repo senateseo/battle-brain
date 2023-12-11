@@ -36,6 +36,7 @@ import 'package:flutterquiz/utils/constants/constants.dart';
 import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/constants/string_labels.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 enum LifelineStatus { unused, using, used }
 
@@ -462,7 +463,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
               backgroundColor: Theme.of(context).primaryColor,
               buttonTitle: AppLocalization.of(context)!
                   .getTranslatedValues(showOptionsKey)!,
-              titleColor: Theme.of(context).colorScheme.background,
+              titleColor: Theme.of(context).backgroundColor,
               onTap: () {
                 if (!showOptionAnimationController.isAnimating) {
                   showOptionAnimationController.reverse();
@@ -472,11 +473,11 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                   timerAnimationController.forward(from: 0.0);
                 }
               },
-              showBorder: false,
-              radius: 8,
+              showBorder: true,
+              
               height: 40.0,
               elevation: 5.0,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w900,
               textSize: 18,
             ),
           ),
@@ -729,11 +730,20 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
             }
           : onTap,
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          border: Border.all(
-              color: Theme.of(context).colorScheme.onTertiary.withOpacity(0.6)),
-        ),
+        decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
         width: 75.0,
         height: 55.0,
         padding: const EdgeInsets.all(11),

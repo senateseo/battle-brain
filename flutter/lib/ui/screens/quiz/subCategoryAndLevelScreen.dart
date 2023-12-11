@@ -24,6 +24,7 @@ import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class SubCategoryAndLevelScreen extends StatefulWidget {
   const SubCategoryAndLevelScreen({
@@ -400,10 +401,20 @@ class _AnimatedSubcategoryContainerState
 
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: colorScheme.background,
-        borderRadius: BorderRadius.circular(10),
-      ),
+      decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
       child: Column(
         children: [
           /// subcategory

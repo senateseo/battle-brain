@@ -19,6 +19,7 @@ import 'package:flutterquiz/utils/constants/constants.dart';
 import 'package:flutterquiz/utils/lifeLine_options.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class QuestionsContainer extends StatefulWidget {
   final List<GlobalKey> guessTheWordQuestionContainerKeys;
@@ -367,9 +368,20 @@ class _QuestionsContainerState extends State<QuestionsContainer> {
                                 ? 0.25
                                 : 0.325),
                         alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
+                        decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
                         child: CachedNetworkImage(
                           placeholder: (_, __) => const Center(
                             child: CircularProgressContainer(),

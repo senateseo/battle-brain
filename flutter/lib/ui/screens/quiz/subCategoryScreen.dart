@@ -16,6 +16,7 @@ import 'package:flutterquiz/ui/widgets/premium_category_access_badge.dart';
 import 'package:flutterquiz/ui/widgets/unlock_premium_category_dialog.dart';
 import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class SubCategoryScreen extends StatefulWidget {
   final String categoryId;
@@ -165,21 +166,20 @@ class _SubCategoryScreenState extends State<SubCategoryScreen> {
                         left: boxConstraints.maxWidth * (0.1),
                         right: boxConstraints.maxWidth * (0.1),
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            boxShadow: const [
-                              BoxShadow(
-                                offset: Offset(0, 25),
-                                blurRadius: 5,
-                                spreadRadius: 2,
-                                color: Color(0x40808080),
-                              )
-                            ],
-                            borderRadius: BorderRadius.vertical(
-                              bottom: Radius.circular(
-                                  boxConstraints.maxWidth * .525),
-                            ),
-                          ),
+                          decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
                           width: boxConstraints.maxWidth,
                           height: 50,
                         ),

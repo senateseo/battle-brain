@@ -46,6 +46,7 @@ import 'package:lottie/lottie.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class ResultScreen extends StatefulWidget {
   final QuizTypes?
@@ -1167,11 +1168,20 @@ class _ResultScreenState extends State<ResultScreen> {
                               child: Container(
                                 padding: const EdgeInsets.only(
                                     top: 10, bottom: 10, right: 30, left: 30),
-                                decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .primaryColor
-                                        .withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(10)),
+                                decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
                                 child: Text(
                                   "${AppLocalization.of(context)!.getTranslatedValues("youWin")!} ${widget.entryFee! * 2} ${AppLocalization.of(context)!.getTranslatedValues("coinsLbl")!}",
                                   style: TextStyle(
@@ -1552,12 +1562,20 @@ class _ResultScreenState extends State<ResultScreen> {
       child: Container(
         height: MediaQuery.of(context).size.height * (0.560),
         width: MediaQuery.of(context).size.width * (0.90),
-        decoration: BoxDecoration(
-          color: _isWinner
-              ? Theme.of(context).colorScheme.background
-              : Theme.of(context).colorScheme.onTertiary.withOpacity(.05),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
+        decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
         child: _buildResultDetails(context),
       ),
     );
@@ -1567,14 +1585,14 @@ class _ResultScreenState extends State<ResultScreen> {
       String buttonTitle, Function onTap, BuildContext context) {
     return CustomRoundedButton(
       widthPercentage: 0.90,
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).backgroundColor,
       buttonTitle: buttonTitle,
       radius: 8,
       elevation: 5.0,
       showBorder: false,
       fontWeight: FontWeights.regular,
       height: 50.0,
-      titleColor: Theme.of(context).colorScheme.background,
+      titleColor: Theme.of(context).primaryColor,
       onTap: onTap,
       textSize: 20.0,
     );

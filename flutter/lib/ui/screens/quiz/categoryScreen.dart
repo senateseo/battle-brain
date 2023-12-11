@@ -18,6 +18,7 @@ import 'package:flutterquiz/ui/widgets/unlock_premium_category_dialog.dart';
 import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class CategoryScreen extends StatefulWidget {
   final QuizTypes quizType;
@@ -237,7 +238,7 @@ class _CategoryScreen extends State<CategoryScreen> {
                         left: boxConstraints.maxWidth * (0.1),
                         right: boxConstraints.maxWidth * (0.1),
                         child: Container(
-                          decoration: BoxDecoration(
+                           decoration: BoxDecoration(
                             color: Colors.transparent,
                             boxShadow: const [
                               BoxShadow(
@@ -258,10 +259,20 @@ class _CategoryScreen extends State<CategoryScreen> {
                       ),
                       Positioned(
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: colorScheme.background,
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
+                          decoration: ShapeDecoration(
+              color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0.0, // Move to right 10  horizontally
+                    6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2))),
                           padding: const EdgeInsets.all(12.0),
                           width: boxConstraints.maxWidth,
                           child: Row(
@@ -310,7 +321,7 @@ class _CategoryScreen extends State<CategoryScreen> {
                                       style: TextStyle(
                                         color: colorScheme.onTertiary,
                                         fontSize: 18,
-                                        fontWeight: FontWeights.semiBold,
+                                        fontWeight: FontWeights.extrabold,
                                       ),
                                     ),
                                     Text(
@@ -326,6 +337,7 @@ class _CategoryScreen extends State<CategoryScreen> {
                                         fontSize: 14,
                                         color: colorScheme.onTertiary
                                             .withOpacity(0.6),
+                                        
                                       ),
                                     ),
                                   ],
