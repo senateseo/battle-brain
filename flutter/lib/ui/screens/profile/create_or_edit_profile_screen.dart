@@ -32,6 +32,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CreateOrEditProfileScreen extends StatefulWidget {
   final bool isNewUser;
@@ -475,6 +476,13 @@ class _SelectProfilePictureScreen extends State<CreateOrEditProfileScreen> {
   //continue button will listen to two cubit one is for changing name and other is
   //for uploading profile picture
   Widget _buildContinueButton(UserProfile userProfile) {
+    final continueTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeights.bold,
+      color: Theme.of(context).colorScheme.background,
+    ));
+
     return BlocConsumer<UploadProfileCubit, UploadProfileState>(
       bloc: context.read<UploadProfileCubit>(),
       listener: (context, state) {
@@ -653,11 +661,10 @@ class _SelectProfilePictureScreen extends State<CreateOrEditProfileScreen> {
                   child: Text(
                     AppLocalization.of(context)!
                         .getTranslatedValues(textButtonKey)!,
-                    style: Theme.of(context).textTheme.headlineSmall!.merge(
-                          TextStyle(
-                            color: Theme.of(context).colorScheme.background,
-                          ),
-                        ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineSmall!
+                        .merge(continueTextStyle),
                   ),
                 );
               },
@@ -669,19 +676,20 @@ class _SelectProfilePictureScreen extends State<CreateOrEditProfileScreen> {
   }
 
   Widget _buildNameTextFieldContainer() {
+    final nameTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeights.extrabold,
+      color: Theme.of(context).colorScheme.onTertiary,
+    ));
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (!widget.isNewUser) ...[
-          Text(
-            AppLocalization.of(context)!.getTranslatedValues("profileName")!,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.onTertiary,
-            ),
-          ),
+          Text(AppLocalization.of(context)!.getTranslatedValues("profileName")!,
+              style: nameTextStyle),
           const SizedBox(height: 10),
         ],
         Container(
@@ -715,17 +723,18 @@ class _SelectProfilePictureScreen extends State<CreateOrEditProfileScreen> {
   }
 
   Widget _buildEmailTextFieldContainer() {
+    final emailTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeights.extrabold,
+      color: Theme.of(context).colorScheme.onTertiary,
+    ));
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppLocalization.of(context)!.getTranslatedValues("emailAddress")!,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.onTertiary,
-          ),
-        ),
+        Text(AppLocalization.of(context)!.getTranslatedValues("emailAddress")!,
+            style: emailTextStyle),
         const SizedBox(height: 10),
         Container(
           decoration: BoxDecoration(
@@ -775,17 +784,18 @@ class _SelectProfilePictureScreen extends State<CreateOrEditProfileScreen> {
   }
 
   Widget _buildPhoneTextFieldContainer() {
+    final phoneTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeights.extrabold,
+      color: Theme.of(context).colorScheme.onTertiary,
+    ));
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppLocalization.of(context)!.getTranslatedValues("phoneNumber")!,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.onTertiary,
-          ),
-        ),
+        Text(AppLocalization.of(context)!.getTranslatedValues("phoneNumber")!,
+            style: phoneTextStyle),
         const SizedBox(height: 10),
         Container(
           decoration: BoxDecoration(
