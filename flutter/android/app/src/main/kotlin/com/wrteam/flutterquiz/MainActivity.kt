@@ -1,4 +1,4 @@
-package com.wrteam.flutterquiz
+package com.ai.smartone
 
 import io.flutter.embedding.android.FlutterActivity
 

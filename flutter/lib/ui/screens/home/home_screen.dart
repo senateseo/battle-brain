@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -31,6 +32,7 @@ import 'package:flutterquiz/features/quiz/cubits/quizzone_category_cubit.dart';
 import 'package:flutterquiz/features/quiz/cubits/subCategoryCubit.dart';
 import 'package:flutterquiz/features/quiz/models/quizType.dart';
 import 'package:flutterquiz/features/systemConfig/cubits/systemConfigCubit.dart';
+import 'package:flutterquiz/features/leaderBoard/cubit/leaderBoardDailyCubit.dart';
 import 'package:flutterquiz/ui/screens/battle/create_or_join_screen.dart';
 import 'package:flutterquiz/ui/screens/home/widgets/app_under_maintenance_dialog.dart';
 import 'package:flutterquiz/ui/screens/home/widgets/guest_mode_dialog.dart';
@@ -51,6 +53,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.isGuest});
@@ -74,6 +77,9 @@ class HomeScreen extends StatefulWidget {
           BlocProvider<UpdateUserDetailCubit>(
             create: (_) => UpdateUserDetailCubit(ProfileManagementRepository()),
           ),
+          BlocProvider<LeaderBoardDailyCubit>(
+            create: (_) => LeaderBoardDailyCubit(),
+          ),
         ],
         child: HomeScreen(isGuest: routeSettings.arguments as bool),
       ),
@@ -83,6 +89,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with TickerProviderStateMixin, WidgetsBindingObserver {
+  // Leaderboard
+  final controllerD = ScrollController();
+
   /// Animations
   late AnimationController slideAnimationController;
   late Animation<Offset> slideAnimation;
@@ -95,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-  List<String> battleName = ["groupPlay", "battleQuiz"];
+  List<String> battleName = ["battleQuiz"];
 
   List<String> battleImg = ["group_battle_icon.svg", "one_vs_one_icon.svg"];
 
@@ -146,11 +155,12 @@ class _HomeScreenState extends State<HomeScreen>
 
   // TextStyles
   // check build() method
-  late var _boldTextStyle = TextStyle(
-    fontWeight: FontWeights.bold,
+  late var _boldTextStyle = GoogleFonts.montserrat(
+      textStyle: TextStyle(
+    fontWeight: FontWeights.extrabold,
     fontSize: 18.0,
     color: Theme.of(context).colorScheme.onTertiary,
-  );
+  ));
 
   ///
   late final String _userId;
@@ -168,11 +178,15 @@ class _HomeScreenState extends State<HomeScreen>
     _initLocalNotification();
     checkForUpdates();
     setupInteractedMessage();
+    controllerD.addListener(scrollListenerD);
+
+    _userId = context.read<UserDetailsCubit>().userId();
 
     /// Create Ads
     Future.delayed(Duration.zero, () {
       context.read<RewardedAdCubit>().createDailyRewardAd(context);
       context.read<InterstitialAdCubit>().createInterstitialAd(context);
+      context.read<LeaderBoardDailyCubit>().fetchLeaderBoard("20", _userId);
     });
 
     WidgetsBinding.instance.addObserver(this);
@@ -194,7 +208,6 @@ class _HomeScreenState extends State<HomeScreen>
     } else {
       fetchUserDetails();
 
-      _userId = context.read<UserDetailsCubit>().userId();
       quizCubit.getQuizCategoryWithUserId(
         languageId: _currLangId,
         type: _quizZoneId,
@@ -523,6 +536,18 @@ class _HomeScreenState extends State<HomeScreen>
     super.dispose();
   }
 
+  // Leaderboard Daily
+  scrollListenerD() {
+    if (controllerD.position.maxScrollExtent == controllerD.offset) {
+      if (context.read<LeaderBoardDailyCubit>().hasMoreData()) {
+        context.read<LeaderBoardDailyCubit>().fetchMoreLeaderBoardData(
+              "20",
+              _userId,
+            );
+      }
+    }
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
@@ -682,9 +707,8 @@ class _HomeScreenState extends State<HomeScreen>
 
                         /// profile Border
                         border: Border.all(
-                          color: Theme.of(context)
-                              .primaryColor
-                              .withOpacity(0.3),
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.3),
                         ),
                       ),
                       child: _userProfileImg.startsWith("assets/")
@@ -859,10 +883,20 @@ class _HomeScreenState extends State<HomeScreen>
                 ],
                 Positioned(
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Theme.of(context).colorScheme.background,
-                    ),
+                    decoration: ShapeDecoration(
+                        color: white,
+                        shadows: [
+                          BoxShadow(
+                            color: wood_smoke,
+                            offset: Offset(
+                              0.0, // Move to right 10  horizontally
+                              6.0, // Move to bottom 5 Vertically
+                            ),
+                          )
+                        ],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                            side: BorderSide(color: wood_smoke, width: 2))),
                     clipBehavior: Clip.none,
                     margin: EdgeInsets.only(
                       left: hzMargin,
@@ -1125,7 +1159,6 @@ class _HomeScreenState extends State<HomeScreen>
             padding: EdgeInsets.only(
               left: hzMargin,
               right: hzMargin,
-              top: scrHeight * 0.03,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1142,10 +1175,11 @@ class _HomeScreenState extends State<HomeScreen>
                 GridView.count(
                   // Create a grid with 2 columns. If you change the scrollDirection to
                   // horizontal, this produces 2 rows.
-                  crossAxisCount: 2,
+                  crossAxisCount: 1,
+                  childAspectRatio: (50 / 15),
                   shrinkWrap: true,
                   mainAxisSpacing: 20,
-                  padding: EdgeInsets.only(top: _statusBarPadding * 0.2),
+                  // padding: EdgeInsets.only(top: _statusBarPadding * 0.2),
                   crossAxisSpacing: 20,
                   scrollDirection: Axis.vertical,
                   physics: const NeverScrollableScrollPhysics(),
@@ -1781,22 +1815,103 @@ class _HomeScreenState extends State<HomeScreen>
                 animation: slideAnimation,
               ),
               _buildCategory(),
-              if (_sysConfigCubit.isAdsEnable() &&
-                  _sysConfigCubit.isDailyAdsEnabled()) ...[
-                _buildDailyAds(),
-              ],
-              if (_sysConfigCubit.isContestEnabled && !widget.isGuest) ...[
-                _buildLiveContestSection(),
-              ],
+              // if (_sysConfigCubit.isAdsEnable() &&
+              //     _sysConfigCubit.isDailyAdsEnabled()) ...[
+              //   _buildDailyAds(),
+              // ],
+              // if (_sysConfigCubit.isContestEnabled && !widget.isGuest) ...[
+              //   _buildLiveContestSection(),
+              // ],
               _buildBattle(),
               // _buildExamSelf(),
               // _buildZones(),
+              _buildLeaderBoard()
             ],
           ),
         ),
         if (showUpdateContainer) const UpdateAppContainer(),
       ],
     );
+  }
+
+  Widget _buildLeaderBoard() {
+    return (Container(
+      margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+      padding: EdgeInsets.only(
+        left: hzMargin,
+        right: hzMargin,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// Zone Title: Battle
+          Text(
+            '${AppLocalization.of(context)?.getTranslatedValues(dailyLbl) ?? dailyLbl} 1st place', //
+            style: _boldTextStyle,
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+
+          /// Categories
+          BlocConsumer<LeaderBoardDailyCubit, LeaderBoardDailyState>(
+            bloc: context.read<LeaderBoardDailyCubit>(),
+            listener: (context, state) {
+              if (state is LeaderBoardDailyFailure) {
+                if (state.errorMessage == errorCodeUnauthorizedAccess) {
+                  UiUtils.showAlreadyLoggedInDialog(context: context);
+
+                  return;
+                }
+              }
+            },
+            builder: (context, state) {
+              if (state is LeaderBoardDailyFailure) {
+                return ErrorContainer(
+                  showBackButton: false,
+                  errorMessage:
+                      AppLocalization.of(context)!.getTranslatedValues(
+                    convertErrorCodeToLanguageKey(state.errorMessage),
+                  )!,
+                  onTapRetry: fetchDailyLeaderBoard,
+                  showErrorImage: true,
+                  errorMessageColor: Theme.of(context).primaryColor,
+                );
+              }
+
+              ///
+              if (state is LeaderBoardDailySuccess) {
+                final dailyList = state.leaderBoardDetails;
+                final hasMore = state.hasMore;
+
+                /// API returns empty list if there is no leaderboard data.
+                if (dailyList.isEmpty) {
+                  return noLeaderboard(fetchDailyLeaderBoard);
+                }
+
+                log(name: 'Leaderboard Daily', jsonEncode(dailyList));
+                log(name: 'Leaderboard Daily', 'Has More: $hasMore');
+
+                return Wrap(
+                  children: [
+                    leaderBoardList(dailyList, controllerD, hasMore),
+                    // if (LeaderBoardDailyCubit.scoreD != "0" &&
+                    //     int.parse(LeaderBoardDailyCubit.rankD) > 3)
+                    //   myRank(
+                    //     LeaderBoardDailyCubit.rankD,
+                    //     LeaderBoardDailyCubit.profileD,
+                    //     LeaderBoardDailyCubit.scoreD,
+                    //   ),
+                  ],
+                );
+              }
+
+              return const Center(child: CircularProgressContainer());
+            },
+          )
+        ],
+      ),
+    ));
   }
 
   void fetchUserDetails() {
@@ -1808,12 +1923,12 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     /// need to add this here, cause textStyle doesn't update automatically when changing theme.
-    _boldTextStyle = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 18.0,
+    _boldTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+      fontWeight: FontWeights.bold,
+      fontSize: 24.0,
       color: Theme.of(context).colorScheme.onTertiary,
-    );
-
+    ));
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         statusBarColor: Theme.of(context).scaffoldBackgroundColor,
@@ -1881,6 +1996,132 @@ class _HomeScreenState extends State<HomeScreen>
                     return _buildHome();
                   },
                 ),
+        ),
+      ),
+    );
+  }
+
+  void fetchDailyLeaderBoard() =>
+      context.read<LeaderBoardDailyCubit>().fetchLeaderBoard("20", _userId);
+  Widget noLeaderboard(VoidCallback onTapRetry) => Center(
+        child: ErrorContainer(
+          topMargin: 0,
+          errorMessage: AppLocalization.of(context)!
+              .getTranslatedValues("noLeaderboardLbl")!,
+          onTapRetry: onTapRetry,
+          showErrorImage: false,
+        ),
+      );
+  Widget leaderBoardList(
+    List leaderBoardList,
+    ScrollController controller,
+    bool hasMore,
+  ) {
+    // if (leaderBoardList.length <= 3) return const SizedBox();
+
+    final leaderBoardTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onTertiary,
+            fontSize: 16,
+            fontWeight: FontWeights.extrabold));
+    final leaderBoardScoreTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+            color: santas_gray,
+            fontSize: 16,
+            fontWeight: FontWeights.extrabold));
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
+    return Expanded(
+      child: Container(
+        decoration: ShapeDecoration(
+            color: white,
+            shadows: [
+              BoxShadow(
+                color: wood_smoke,
+                offset: Offset(
+                  0.0, // Move to right 10  horizontally
+                  6.0, // Move to bottom 5 Vertically
+                ),
+              )
+            ],
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                side: BorderSide(color: wood_smoke, width: 2))),
+        padding: EdgeInsets.only(
+            top: 10, left: width * .02, right: width * .02, bottom: 10.0),
+        child: ListView.separated(
+          controller: controller,
+          shrinkWrap: true,
+          itemCount: leaderBoardList.length,
+          separatorBuilder: (_, i) => i > 2
+              ? Divider(
+                  color: Colors.grey,
+                  indent: width * 0.03,
+                  endIndent: width * 0.03,
+                )
+              : const SizedBox(),
+          itemBuilder: (context, index) {
+            return index >= 0
+                ? (hasMore && index == (leaderBoardList.length - 1))
+                    ? const Center(child: CircularProgressContainer())
+                    : Row(
+                        children: [
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              leaderBoardList[index]['user_rank']!,
+                              style: leaderBoardTextStyle,
+                            ),
+                          ),
+                          Expanded(
+                            flex: 9,
+                            child: ListTile(
+                              dense: true,
+                              contentPadding: const EdgeInsets.only(right: 20),
+                              title: Text(
+                                leaderBoardList[index]['name'] ?? "...",
+                                overflow: TextOverflow.ellipsis,
+                                style: leaderBoardTextStyle,
+                              ),
+                              leading: Container(
+                                width: width * .12,
+                                height: height * .3,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context)
+                                      .primaryColor
+                                      .withOpacity(0.5),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: UserUtils.getUserProfileWidget(
+                                  profileUrl:
+                                      leaderBoardList[index]['profile'] ?? "",
+                                  width: double.maxFinite,
+                                  height: double.maxFinite,
+                                ),
+                              ),
+                              trailing: SizedBox(
+                                width: width * .12,
+                                child: Center(
+                                  child: Text(
+                                    UiUtils.formatNumber(
+                                      int.parse(leaderBoardList[index]
+                                              ['score'] ??
+                                          "0"),
+                                    ),
+                                    maxLines: 1,
+                                    softWrap: false,
+                                    style: leaderBoardScoreTextStyle,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                : const SizedBox();
+          },
         ),
       ),
     );
