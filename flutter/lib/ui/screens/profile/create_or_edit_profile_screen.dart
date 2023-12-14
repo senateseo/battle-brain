@@ -1029,13 +1029,13 @@ class _SelectProfilePictureScreen extends State<CreateOrEditProfileScreen> {
                           ),
                           child: _buildEmailTextFieldContainer(),
                         ),
-                        SizedBox(height: size.height * .03),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: size.width * UiUtils.hzMarginPct,
-                          ),
-                          child: _buildPhoneTextFieldContainer(),
-                        ),
+                        // SizedBox(height: size.height * .03),
+                        // Padding(
+                        //   padding: EdgeInsets.symmetric(
+                        //     horizontal: size.width * UiUtils.hzMarginPct,
+                        //   ),
+                        //   child: _buildPhoneTextFieldContainer(),
+                        // ),
                         SizedBox(height: size.height * .03),
                       ] else ...[
                         ..._buildNameAndReferCodeContainer(),

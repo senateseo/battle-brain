@@ -850,9 +850,7 @@ class _ResultScreenState extends State<ResultScreen> {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 5.0),
           alignment: Alignment.center,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+          child: Wrap(
             children: [
               Text(
                 widget.quizType == QuizTypes.exam
@@ -1893,8 +1891,8 @@ class _ResultScreenState extends State<ResultScreen> {
           _buildReviewAnswersButton(),
           buttonSpace,
         ],
-        _buildShareYourScoreButton(),
-        buttonSpace,
+        // _buildShareYourScoreButton(),
+        // buttonSpace,
         _buildHomeButton(),
         buttonSpace,
       ],

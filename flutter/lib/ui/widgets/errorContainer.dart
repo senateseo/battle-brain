@@ -36,8 +36,8 @@ class ErrorContainer extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (showErrorImage) ...[
-            SvgPicture.asset(
-              UiUtils.getImagePath("error.svg"),
+            Image.asset(
+              UiUtils.getImagePath("brain_error.png"),
               width: 200,
               height: 200,
             ),

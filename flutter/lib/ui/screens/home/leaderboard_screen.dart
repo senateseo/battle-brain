@@ -645,13 +645,11 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
         textStyle: TextStyle(
             color: Theme.of(context).colorScheme.onTertiary,
             fontSize: 16,
-            fontWeight: FontWeights.extrabold));
+            fontWeight: FontWeights.bold));
 
     final leaderBoardScoreTextStyle = GoogleFonts.montserrat(
-        textStyle: TextStyle(
-            color: santas_gray,
-            fontSize: 16,
-            fontWeight: FontWeights.extrabold));
+        textStyle: const TextStyle(
+            color: santas_gray, fontSize: 16, fontWeight: FontWeights.bold));
 
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;

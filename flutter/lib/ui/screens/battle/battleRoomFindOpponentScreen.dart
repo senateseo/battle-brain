@@ -20,6 +20,7 @@ import 'package:flutterquiz/utils/constants/constants.dart';
 import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class BattleRoomFindOpponentScreen extends StatefulWidget {
   const BattleRoomFindOpponentScreen({super.key, required this.categoryId});
@@ -476,10 +477,10 @@ class _BattleRoomFindOpponentScreenState
                     backgroundColor: Theme.of(context).primaryColor,
                     buttonTitle: AppLocalization.of(context)!
                         .getTranslatedValues("playWithBotLbl"),
-                    radius: 5,
+                    radius: 16,
                     showBorder: false,
                     height: 40,
-                    titleColor: Theme.of(context).colorScheme.background,
+                    titleColor: Theme.of(context).colorScheme.primary,
                     elevation: 5.0,
                     onTap: () {
                       /// To avoid button Spamming
@@ -508,10 +509,10 @@ class _BattleRoomFindOpponentScreenState
                     backgroundColor: Theme.of(context).primaryColor,
                     buttonTitle: AppLocalization.of(context)!
                         .getTranslatedValues('retryLbl')!,
-                    radius: 5,
+                    radius: 16,
                     showBorder: false,
                     height: 40,
-                    titleColor: Theme.of(context).colorScheme.background,
+                    titleColor: Theme.of(context).colorScheme.primary,
                     elevation: 5.0,
                     onTap: retryToSearchBattleRoom,
                   ),
@@ -591,33 +592,39 @@ class _BattleRoomFindOpponentScreenState
   }
 
   Widget _buildBackButton() {
-    return Align(
-      alignment: Alignment.topLeft,
-      child: Padding(
-        padding: EdgeInsets.only(
-            left: 20.0, top: MediaQuery.of(context).padding.top),
-        child: CustomBackButton(
-            onTap: () {
-              //
-              final battleRoomCubit = context.read<BattleRoomCubit>();
-              //if user has found opponent then do not allow to go back
-              if (battleRoomCubit.state is BattleRoomUserFound) {
-                return;
-              }
+    return Container(
+        height: 80.0,
+        width: 80.0,
+        child: Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: 4.0, top: MediaQuery.of(context).padding.top),
+              child: Container(
+                height: 80.0,
+                width: 80.0,
+                child: CustomBackButton(
+                    onTap: () {
+                      //
+                      final battleRoomCubit = context.read<BattleRoomCubit>();
+                      //if user has found opponent then do not allow to go back
+                      if (battleRoomCubit.state is BattleRoomUserFound) {
+                        return;
+                      }
 
-              showDialog(
-                  context: context,
-                  builder: (_) => ExitGameDialog(
-                        onTapYes: () {
-                          battleRoomCubit.deleteBattleRoom(false);
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pop();
-                        },
-                      ));
-            },
-            iconColor: Theme.of(context).colorScheme.secondary),
-      ),
-    );
+                      showDialog(
+                          context: context,
+                          builder: (_) => ExitGameDialog(
+                                onTapYes: () {
+                                  battleRoomCubit.deleteBattleRoom(false);
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
+                                },
+                              ));
+                    },
+                    iconColor: Theme.of(context).colorScheme.secondary),
+              ),
+            )));
   }
 
   @override

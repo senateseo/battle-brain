@@ -9,10 +9,12 @@ import 'package:flutterquiz/features/auth/cubits/authCubit.dart';
 import 'package:flutterquiz/features/settings/settingsCubit.dart';
 import 'package:flutterquiz/features/systemConfig/cubits/systemConfigCubit.dart';
 import 'package:flutterquiz/ui/widgets/errorContainer.dart';
+import 'package:flutterquiz/utils/colors.dart';
 import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:unity_ads_plugin/unity_ads_plugin.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -159,37 +161,39 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Widget _buildSplashAnimation() {
-    return Stack(
-      alignment: Alignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         AnimatedBuilder(
-          animation: logoAnimationController,
-          builder: (context, child) {
-            double scale =
-                0.0 + logoScaleUpAnimation.value - logoScaleDownAnimation.value;
-            return Transform.scale(scale: scale, child: child);
-          },
-          child: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: MediaQuery.of(context).size.width * 0.2,
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                UiUtils.getImagePath("splash_logo.svg"),
-                color: Theme.of(context).colorScheme.background,
+            animation: logoAnimationController,
+            builder: (context, child) {
+              double scale = 0.0 +
+                  logoScaleUpAnimation.value -
+                  logoScaleDownAnimation.value;
+              return Transform.scale(scale: scale, child: child);
+            },
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Container(
+                height: 240,
+                margin: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.2,
+                ),
+                child: SvgPicture.asset(
+                  UiUtils.getImagePath("brain_logo.svg"),
+                ),
               ),
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 22.0),
-            child: SvgPicture.asset(
-              UiUtils.getImagePath("wrteam_logo.svg"),
-            ),
-          ),
-        ),
+              SizedBox(
+                  child: Padding(
+                      padding: const EdgeInsets.only(bottom: 22.0),
+                      child: Text('Battle Brain',
+                          style: GoogleFonts.montserrat(
+                              textStyle: TextStyle(
+                            fontWeight: FontWeight.w800,
+                            fontSize: 36.0,
+                            color: Theme.of(context).colorScheme.onTertiary,
+                          ))))),
+            ])),
       ],
     );
   }
@@ -197,7 +201,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: lightening_yellow,
       body: Stack(
         children: [
           BlocConsumer<SystemConfigCubit, SystemConfigState>(

@@ -1,6 +1,6 @@
 import 'package:flutterquiz/features/wallet/models/payoutMethod.dart';
 
-const appName = "Elite Quiz";
+const appName = "Battle Brain";
 const packageName = "com.ai.smartone";
 const iosAppId = "585027354";
 
@@ -160,7 +160,7 @@ const inBetweenQuestionTimeInSeconds = 1;
 
 //it is the waiting time for finding opponent. Once user has waited for
 //given seconds it will show opponent not found
-const waitForOpponentDurationInSeconds = 30;
+const waitForOpponentDurationInSeconds = 10;
 //time to read paragraph
 // const comprehensionParagraphReadingTimeInSeconds = 60;
 

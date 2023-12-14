@@ -349,7 +349,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 Theme.of(context).colorScheme.secondary,
                             buttonTitle: AppLocalization.of(context)!
                                 .getTranslatedValues('submitBtn')!,
-                            radius: 10,
+                            radius: 16,
                             showBorder: false,
                             height: 50,
                             onTap: () {

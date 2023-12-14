@@ -542,7 +542,7 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                               widthPercentage:
                                   MediaQuery.of(context).size.width,
                               backgroundColor: Theme.of(context).primaryColor,
-                              radius: 10,
+                              radius: 16,
                               showBorder: false,
                               height: 50,
                               onTap: () {
@@ -620,7 +620,7 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                               widthPercentage:
                                   MediaQuery.of(context).size.width,
                               backgroundColor: Theme.of(context).primaryColor,
-                              radius: 10,
+                              radius: 16,
                               showBorder: false,
                               height: 50,
                               onTap: () {
@@ -1744,7 +1744,7 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                               widthPercentage:
                                   MediaQuery.of(context).size.width,
                               backgroundColor: Theme.of(context).primaryColor,
-                              radius: 10,
+                              radius: 16,
                               showBorder: false,
                               height: 50,
                               onTap: () {
@@ -1804,7 +1804,7 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                               widthPercentage:
                                   MediaQuery.of(context).size.width,
                               backgroundColor: Theme.of(context).primaryColor,
-                              radius: 10,
+                              radius: 16,
                               showBorder: false,
                               height: 50,
                               onTap: () {
@@ -1897,10 +1897,10 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                       /// VS
                       Padding(
                         padding: const EdgeInsets.only(top: 75, left: 3),
-                        child: SvgPicture.asset(
-                          AssetsUtils.getImagePath("vs.svg"),
-                          width: 247.177,
-                          height: 126.416,
+                        child: Image.asset(
+                          AssetsUtils.getImagePath("brain_fight.png"),
+                          width: 720,
+                          height: 360,
                         ),
                       ),
 
@@ -1927,12 +1927,13 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                               ),
                               Text(
                                 widget.title,
-                                style: TextStyle(
+                                style: GoogleFonts.montserrat(
+                                    textStyle: TextStyle(
                                   fontSize: 22,
                                   color:
                                       Theme.of(context).colorScheme.background,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                  fontWeight: FontWeights.extrabold,
+                                )),
                               ),
                               const SizedBox(),
                             ],
@@ -1962,7 +1963,7 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                           CustomRoundedButton(
                             widthPercentage: MediaQuery.of(context).size.width,
                             backgroundColor: Theme.of(context).primaryColor,
-                            radius: 10,
+                            radius: 16,
                             showBorder: false,
                             height: 50,
                             onTap: showCreateRoomBottomSheet,
@@ -1974,7 +1975,7 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                           CustomRoundedButton(
                             widthPercentage: MediaQuery.of(context).size.width,
                             backgroundColor: Theme.of(context).primaryColor,
-                            radius: 10,
+                            radius: 16,
                             showBorder: false,
                             height: 50,
                             onTap: showJoinRoomBottomSheet,

@@ -37,6 +37,7 @@ class UploadProfileCubit extends Cubit<UploadProfileState> {
       emit(UploadProfileSuccess(imageUrl));
     } catch (e) {
       //failure
+      print(e);
       emit(UploadProfileFailure(e.toString()));
     }
   }
