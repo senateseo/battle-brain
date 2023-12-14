@@ -14,6 +14,8 @@ import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutterquiz/ui/widgets/customBackButton.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -57,18 +59,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(height: size.height * .07),
-            Row(
-              children: [
-                InkWell(
-                  onTap: Navigator.of(context).pop,
-                  child: Icon(
-                    Icons.arrow_back_rounded,
-                    size: 24,
-                    color: Theme.of(context).colorScheme.onTertiary,
-                  ),
-                ),
-              ],
-            ),
+            SizedBox(
+                width: size.width,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                        height: 64,
+                        width: 64,
+                        child: QBackButton(
+                          removeSnackBars: true,
+                          color: Theme.of(context).primaryColor,
+                        ))
+                  ],
+                )),
             SizedBox(height: size.height * .02),
             const AppLogo(),
             SizedBox(height: size.height * .08),
@@ -186,11 +190,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     : Text(
                         AppLocalization.of(context)!
                             .getTranslatedValues('signUpLbl')!,
-                        style: GoogleFonts.nunito(
+                        style: GoogleFonts.montserrat(
                           textStyle: TextStyle(
-                            color: Theme.of(context).colorScheme.background,
-                            fontSize: 20,
-                          ),
+                              color: Theme.of(context).colorScheme.background,
+                              fontSize: 20,
+                              fontWeight: FontWeights.bold),
                         ),
                       ),
               );

@@ -50,8 +50,9 @@ class _PswdTextFieldState extends State<PswdTextField> {
         fillColor: Theme.of(context).colorScheme.background,
         filled: true,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(
+              width: 8, color: Theme.of(context).colorScheme.onTertiary),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
         contentPadding: const EdgeInsets.all(15),
         hintText: widget.hintText ??

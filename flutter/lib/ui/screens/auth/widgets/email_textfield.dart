@@ -31,8 +31,9 @@ class EmailTextField extends StatelessWidget {
         fillColor: Theme.of(context).colorScheme.background,
         filled: true,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide.none,
+          borderSide: BorderSide(
+              width: 8, color: Theme.of(context).colorScheme.onTertiary),
+          borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
         prefixIcon: const Icon(Icons.mail_outline_rounded),
         prefixIconColor: textColor.withOpacity(0.4),

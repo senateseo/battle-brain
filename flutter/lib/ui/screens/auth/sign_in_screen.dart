@@ -22,6 +22,7 @@ import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutterquiz/utils/colors.dart';
 import 'dart:convert';
 
 class SignInScreen extends StatefulWidget {
@@ -47,7 +48,8 @@ class _SignInScreenState extends State<SignInScreen> {
       create: (_) => SignInCubit(AuthRepository()),
       child: Builder(
         builder: (context) => Scaffold(
-          body: SingleChildScrollView(child: showForm(context)),
+          backgroundColor: lightening_yellow,
+          body: SafeArea(child: showForm(context)),
         ),
       ),
     );
@@ -58,40 +60,115 @@ class _SignInScreenState extends State<SignInScreen> {
 
     return Form(
       key: _formKey,
-      child: Padding(
-        // padding: const EdgeInsets.all(30),
-        padding: EdgeInsets.symmetric(
-          vertical: size.height * UiUtils.vtMarginPct,
-          horizontal: size.width * UiUtils.hzMarginPct + 10,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+              child: Column(children: [
             SizedBox(height: size.height * .09),
             const AppLogo(),
+            showAppTitle(),
             SizedBox(height: size.height * .08),
-            EmailTextField(controller: emailController),
-            SizedBox(height: size.height * .02),
-            PswdTextField(
-              controller: pswdController,
-              validator: (s) => null,
+          ])),
+
+          Expanded(
+              child: Container(
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+            alignment: Alignment.topCenter,
+            decoration: const ShapeDecoration(
+              color: white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(16),
+                      topLeft: Radius.circular(16))),
             ),
-            SizedBox(height: size.height * .01),
-            forgetPwd(),
-            SizedBox(height: size.height * 0.02),
-            showSignIn(context),
-            SizedBox(height: size.height * 0.02),
-            showGoSignup(),
-            orLabel(),
-            SizedBox(height: size.height * 0.03),
-            loginWith(),
-            showSocialMedia(context),
-            SizedBox(height: size.height * 0.05),
-            const TermsAndCondition(),
-          ],
-        ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                  ),
+                  child: SizedBox(
+                    height: 56,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Text("Welcome",
+                              style: GoogleFonts.montserrat(
+                                textStyle: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeights.bold,
+                                    color: wood_smoke),
+                              )),
+                        ),
+                        // Expanded(
+                        //     flex: 1,
+                        //     child: IconButton(
+                        //         onPressed: () {
+                        //           Navigator.of(context).pop();
+                        //         },
+                        //         icon: SvgPicture.asset(
+                        //           "assets/images/close.svg",
+                        //           color: wood_smoke,
+                        //         )))
+                      ],
+                    ),
+                  ),
+                ),
+                const Divider(
+                  thickness: 2,
+                  color: wood_smoke,
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: EmailTextField(controller: emailController),
+                ),
+
+                SizedBox(height: size.height * .02),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: PswdTextField(
+                    controller: pswdController,
+                    validator: (s) => null,
+                  ),
+                ),
+
+                SizedBox(height: size.height * .01),
+                // forgetPwd(),
+                SizedBox(height: size.height * 0.02),
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  child: showSignIn(context),
+                ),
+                SizedBox(height: size.height * 0.02),
+                showGoSignup()
+              ],
+            ),
+          ))
+          // orLabel(),
+          // SizedBox(height: size.height * 0.03),
+          // loginWith(),
+          // showSocialMedia(context),
+          // SizedBox(height: size.height * 0.05),
+          // const TermsAndCondition(),
+        ],
       ),
     );
+  }
+
+  Widget showAppTitle() {
+    return Text("Battle Brain",
+        style: GoogleFonts.montserrat(
+            textStyle: const TextStyle(
+                fontSize: 28.0, fontWeight: FontWeights.extrabold)));
   }
 
   Widget showTopImage() {
@@ -99,7 +176,7 @@ class _SignInScreenState extends State<SignInScreen> {
       height: 66,
       width: 168,
       child: SvgPicture.asset(
-        UiUtils.getImagePath("splash_logo.svg"),
+        UiUtils.getImagePath("brain_logo.svg"),
         color: Theme.of(context).primaryColor,
       ),
     );
@@ -141,7 +218,6 @@ class _SignInScreenState extends State<SignInScreen> {
             }
           } else if (state is SignInFailure &&
               state.authProvider == AuthProviders.email) {
-
             UiUtils.setSnackbar(
               AppLocalization.of(context)!.getTranslatedValues(
                 convertErrorCodeToLanguageKey(state.errorMessage),
@@ -176,12 +252,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 : Text(
                     AppLocalization.of(context)!
                         .getTranslatedValues('loginLbl')!,
-                    style: GoogleFonts.nunito(
+                    style: GoogleFonts.montserrat(
                       textStyle: TextStyle(
                         color: Theme.of(context).colorScheme.background,
                         height: 1.2,
                         fontSize: 20,
-                        fontWeight: FontWeights.regular,
+                        fontWeight: FontWeights.bold,
                       ),
                     ),
                   ),

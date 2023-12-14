@@ -8,11 +8,11 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(context) => SizedBox(
-        height: 66,
-        width: 168,
+        height: 240,
+        width: 240,
         child: SvgPicture.asset(
-          UiUtils.getImagePath("splash_logo.svg"),
-          color: Theme.of(context).primaryColor,
+          UiUtils.getImagePath("brain_logo.svg"),
+          // color: Theme.of(context).primaryColor,
         ),
       );
 }
