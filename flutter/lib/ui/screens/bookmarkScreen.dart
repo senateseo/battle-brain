@@ -323,7 +323,7 @@ class _BookmarkScreenState extends State<BookmarkScreen>
                           backgroundColor: Theme.of(context).primaryColor,
                           buttonTitle: AppLocalization.of(context)!
                               .getTranslatedValues("playBookmarkBtn")!,
-                          radius: 8.0,
+                          radius: 16.0,
                           showBorder: false,
                           fontWeight: FontWeights.semiBold,
                           height: 58.0,
@@ -485,7 +485,7 @@ class _BookmarkScreenState extends State<BookmarkScreen>
                           backgroundColor: Theme.of(context).primaryColor,
                           buttonTitle: AppLocalization.of(context)!
                               .getTranslatedValues("playBookmarkBtn")!,
-                          radius: 8.0,
+                          radius: 16.0,
                           showBorder: false,
                           fontWeight: FontWeight.w500,
                           height: 58.0,
@@ -627,7 +627,7 @@ class _BookmarkScreenState extends State<BookmarkScreen>
                           backgroundColor: Theme.of(context).primaryColor,
                           buttonTitle: AppLocalization.of(context)!
                               .getTranslatedValues("playBookmarkBtn")!,
-                          radius: 8.0,
+                          radius: 16.0,
                           showBorder: false,
                           fontWeight: FontWeight.w500,
                           height: 58.0,

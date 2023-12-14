@@ -401,7 +401,7 @@ class _RandomBattleScreenState extends State<RandomBattleScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       buttonTitle:
           AppLocalization.of(context)!.getTranslatedValues("playWithFrdLbl")!,
-      radius: 8,
+      radius: 16,
       showBorder: false,
       height: size.height * .07,
       fontWeight: FontWeights.semiBold,
@@ -430,7 +430,7 @@ class _RandomBattleScreenState extends State<RandomBattleScreen> {
       backgroundColor: Theme.of(context).primaryColor,
       buttonTitle:
           AppLocalization.of(context)!.getTranslatedValues("letsPlay")!,
-      radius: 8,
+      radius: 16,
       showBorder: false,
       height: size.height * .07,
       fontWeight: FontWeights.semiBold,

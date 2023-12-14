@@ -1585,7 +1585,7 @@ class _ResultScreenState extends State<ResultScreen> {
       widthPercentage: 0.90,
       backgroundColor: Theme.of(context).backgroundColor,
       buttonTitle: buttonTitle,
-      radius: 8,
+      radius: 16,
       elevation: 5.0,
       showBorder: false,
       fontWeight: FontWeights.regular,
@@ -1818,18 +1818,27 @@ class _ResultScreenState extends State<ResultScreen> {
         showDialog(
           context: context,
           builder: (_) => AlertDialog(
+            contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 18),
+            actionsAlignment: MainAxisAlignment.center,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                side: BorderSide(color: wood_smoke, width: 2)),
             actions: [
-              TextButton(
-                onPressed: onTapYesReviewAnswers,
-                child: Text(
-                  AppLocalization.of(context)!
-                      .getTranslatedValues(continueLbl)!,
-                  style: TextStyle(color: Theme.of(context).primaryColor),
-                ),
-              ),
+              OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: black,
+                      side: BorderSide(color: wood_smoke, width: 2)),
+                  onPressed: onTapYesReviewAnswers,
+                  child: Text(
+                    AppLocalization.of(context)!
+                        .getTranslatedValues(continueLbl)!,
+                    style: TextStyle(color: white),
+                  )),
 
               /// Cancel Button
-              TextButton(
+              OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: wood_smoke, width: 2)),
                 onPressed: Navigator.of(context).pop,
                 child: Text(
                   AppLocalization.of(context)!
@@ -1840,7 +1849,7 @@ class _ResultScreenState extends State<ResultScreen> {
             ],
             content: Text(
               "$reviewAnswersDeductCoins ${AppLocalization.of(context)!.getTranslatedValues(coinsWillBeDeductedKey)!}",
-              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
             ),
           ),
         );
