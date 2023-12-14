@@ -7,6 +7,7 @@ import 'package:flutterquiz/ui/widgets/customAppbar.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/constants/string_labels.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -44,27 +45,18 @@ class _SettingScreenState extends State<SettingScreen> {
               final size = MediaQuery.of(context).size;
               final colorScheme = Theme.of(context).colorScheme;
               final primaryColor = Theme.of(context).primaryColor;
-              final textStyle = TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeights.regular,
+              final textStyle = GoogleFonts.montserrat(
+                  textStyle: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeights.extrabold,
                 color: colorScheme.onTertiary,
-              );
+              ));
 
               return Column(
                 children: [
                   /// Sound
                   ListTile(
                     dense: true,
-                    visualDensity: VisualDensity.standard,
-                    tileColor: colorScheme.background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    leading: Icon(
-                      Icons.volume_down,
-                      color: primaryColor,
-                      size: 24,
-                    ),
                     title: Text(
                       localisedValueOf("soundLbl"),
                       style: textStyle,
@@ -86,14 +78,8 @@ class _SettingScreenState extends State<SettingScreen> {
                   ListTile(
                     dense: true,
                     visualDensity: VisualDensity.standard,
-                    tileColor: colorScheme.background,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
-                    ),
-                    leading: Icon(
-                      Icons.vibration,
-                      color: primaryColor,
-                      size: 24,
                     ),
                     title: Text(
                       localisedValueOf("vibrationLbl"),
@@ -186,15 +172,15 @@ class _SettingScreenState extends State<SettingScreen> {
                       );
                     },
                     visualDensity: VisualDensity.standard,
-                    tileColor: colorScheme.background,
+
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    leading: Icon(
-                      Icons.abc,
-                      color: primaryColor,
-                      size: 24,
-                    ),
+                    // leading: Icon(
+                    //   Icons.abc,
+                    //   color: primaryColor,
+                    //   size: 24,
+                    // ),
                     title: Text(
                       localisedValueOf(fontSizeLbl),
                       style: textStyle,

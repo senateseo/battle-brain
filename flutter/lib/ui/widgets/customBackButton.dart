@@ -28,16 +28,15 @@ class CustomBackButton extends StatelessWidget {
               onTap?.call();
             },
       child: ButtonRoundWithShadow(
-                      size: 1,
-                      borderColor: wood_smoke,
-                      color: white,
-                      callback: () {
-                        Navigator.pop(context);
-                      },
-                      shadowColor: wood_smoke,
-                      iconPath: "assets/images/back.svg"),
-                );
-    
+          size: 8,
+          borderColor: wood_smoke,
+          color: white,
+          callback: () {
+            Navigator.pop(context);
+          },
+          shadowColor: wood_smoke,
+          iconPath: "assets/icons/arrow_back.svg"),
+    );
   }
 }
 
@@ -67,14 +66,14 @@ class QBackButton extends StatelessWidget {
               onTap?.call();
             },
       child: ButtonRoundWithShadow(
-                      size: 8,
-                      borderColor: wood_smoke,
-                      color: white,
-                      callback: () {
-                        Navigator.pop(context);
-                      },
-                      shadowColor: wood_smoke,
-                      iconPath: "assets/icons/arrow_back.svg"),
-                );
+          size: 8,
+          borderColor: wood_smoke,
+          color: white,
+          callback: () {
+            Navigator.pop(context);
+          },
+          shadowColor: wood_smoke,
+          iconPath: "assets/icons/arrow_back.svg"),
+    );
   }
 }

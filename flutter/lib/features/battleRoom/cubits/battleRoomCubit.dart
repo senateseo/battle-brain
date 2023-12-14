@@ -78,7 +78,7 @@ class BattleRoomCubit extends Cubit<BattleRoomState> {
         bool? userNotFound = battleRoom.user2?.uid.isEmpty;
         //if opponent userId is empty menas we have not found any user
 
-        /// Check Only in Random Battle.
+        /// Check Only in Brain Battle.
         if (state is BattleRoomUserFound && userNotFound == true && !type) {
           deleteBattleRoom(false);
           emit(BattleRoomUserFound(
@@ -91,7 +91,7 @@ class BattleRoomCubit extends Cubit<BattleRoomState> {
           //if currentRoute is not battleRoomOpponent and battle room created then we
           //have to delete the room so other user can not join the room
 
-          //If roomCode is empty means room is created for playing random battle
+          //If roomCode is empty means room is created for playing Brain Battle
           //else room is created for play with friend battle
           if (Routes.currentRoute != Routes.battleRoomFindOpponent &&
               battleRoom.roomCode!.isEmpty) {

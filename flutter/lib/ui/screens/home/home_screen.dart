@@ -2025,7 +2025,7 @@ class _HomeScreenState extends State<HomeScreen>
             fontSize: 16,
             fontWeight: FontWeights.extrabold));
     final leaderBoardScoreTextStyle = GoogleFonts.montserrat(
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
             color: santas_gray,
             fontSize: 16,
             fontWeight: FontWeights.extrabold));
@@ -2034,7 +2034,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     return Expanded(
       child: Container(
-        decoration: ShapeDecoration(
+        decoration: const ShapeDecoration(
             color: white,
             shadows: [
               BoxShadow(
@@ -2055,12 +2055,8 @@ class _HomeScreenState extends State<HomeScreen>
           shrinkWrap: true,
           itemCount: leaderBoardList.length,
           separatorBuilder: (_, i) => i > 2
-              ? Divider(
-                  color: Colors.grey,
-                  indent: width * 0.03,
-                  endIndent: width * 0.03,
-                )
-              : const SizedBox(),
+              ? const SizedBox(height: 20.0)
+              : const SizedBox(height: 20.0),
           itemBuilder: (context, index) {
             return index >= 0
                 ? (hasMore && index == (leaderBoardList.length - 1))

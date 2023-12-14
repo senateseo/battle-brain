@@ -112,7 +112,7 @@
                                                 <div class="form-group row">
 
                                                     <div class="col-md-3 col-sm-12">
-                                                        <label class="control-label"> Random Battle Seconds</label>
+                                                        <label class="control-label"> Brain Battle Seconds</label>
                                                         <input name="random_battle_seconds" type="number" min=1 class="form-control" value="<?php echo (!empty($random_battle_seconds['message'])) ? $random_battle_seconds['message'] : 60 ?>" required>
                                                     </div>
                                                 </div>
@@ -133,7 +133,7 @@
                                                         <small class="text-danger">Note :- Please enter a value greater than or equal to 1</small>
                                                     </div>
                                                     <div class="col-md-3 col-xs-12 mt-2">
-                                                        <label class="control-label">Random Battle Entery</label>
+                                                        <label class="control-label">Brain Battle Entery</label>
                                                         <input type="number" min=1 id="random_battle_entry_coin" min="1" name="random_battle_entry_coin" required class="form-control" value="<?php echo isset($random_battle_entry_coin) ? $random_battle_entry_coin['message'] : "" ?>">
                                                         <small class="text-danger">Note :- Please enter a value greater than or equal to 1</small>
                                                     </div>

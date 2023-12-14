@@ -7,6 +7,7 @@ import 'package:flutterquiz/features/settings/settingsCubit.dart';
 import 'package:flutterquiz/utils/assets_utils.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Slide {
   final String image;
@@ -221,6 +222,22 @@ class _GettingStartedScreenState extends State<IntroSliderScreen>
   }
 
   Widget _buildIntroSlider() {
+    final TitleTextStyle = GoogleFonts.montserrat(
+      textStyle: TextStyle(
+        color: Theme.of(context).colorScheme.onTertiary,
+        fontSize: 22.0,
+        fontWeight: FontWeights.extrabold,
+      ),
+    );
+
+    final DescriptionTextStyle = GoogleFonts.montserrat(
+      textStyle: TextStyle(
+        color: Theme.of(context).colorScheme.onTertiary,
+        fontSize: 16.0,
+        fontWeight: FontWeights.bold,
+      ),
+    );
+
     return PageView.builder(
       physics: const AlwaysScrollableScrollPhysics(),
       onPageChanged: onPageChanged,
@@ -241,30 +258,18 @@ class _GettingStartedScreenState extends State<IntroSliderScreen>
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * .01),
-            Text(
-              slideList[index].title,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiary,
-                fontSize: 22.0,
-                fontWeight: FontWeights.bold,
-              ),
-            ),
+            Text(slideList[index].title,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                style: TitleTextStyle),
             SizedBox(height: MediaQuery.of(context).size.height * .0175),
             SizedBox(
               height: 58,
               width: MediaQuery.of(context).size.width * .8,
-              child: Text(
-                slideList[index].description,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onTertiary,
-                  fontWeight: FontWeights.medium,
-                  fontSize: 16.0,
-                ),
-              ),
+              child: Text(slideList[index].description,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: DescriptionTextStyle),
             ),
           ],
         );

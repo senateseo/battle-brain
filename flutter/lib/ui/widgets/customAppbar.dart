@@ -4,6 +4,7 @@ import 'package:flutterquiz/ui/widgets/customBackButton.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class QAppBar extends StatelessWidget implements PreferredSizeWidget {
   const QAppBar({
@@ -12,7 +13,7 @@ class QAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.roundedAppBar = true,
     this.removeSnackBars = true,
     this.bottom,
-    this.bottomHeight = 64,
+    this.bottomHeight = 80,
     this.usePrimaryColor = false,
     this.actions,
     this.automaticallyImplyLeading = true,
@@ -79,8 +80,10 @@ class QAppBar extends StatelessWidget implements PreferredSizeWidget {
                 margin: EdgeInsets.symmetric(
                   horizontal:
                       MediaQuery.of(context).size.width * UiUtils.hzMarginPct,
-                  vertical: 20,
+                  vertical: 16,
                 ),
+
+                // padding: EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
                   color: colorScheme.onTertiary.withOpacity(0.08),

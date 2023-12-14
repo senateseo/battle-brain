@@ -30,3 +30,4 @@ const Color darkLevelLockedColor = Color(0xffa8a8a8);
 const Color badgeLockedColor = Colors.grey;
 const Color addCoinColor = Colors.green;
 const Color hurryUpTimerColor = Colors.red; //timer color when 25% time left
+const Color rankingPageColor = Color(0xFFF95A2C);

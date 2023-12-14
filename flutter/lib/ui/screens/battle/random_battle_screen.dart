@@ -23,6 +23,7 @@ import 'package:flutterquiz/utils/constants/error_message_keys.dart';
 import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/constants/string_labels.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RandomBattleScreen extends StatefulWidget {
   const RandomBattleScreen({super.key});
@@ -236,6 +237,12 @@ class _RandomBattleScreenState extends State<RandomBattleScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final titleTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+      fontSize: 22,
+      color: Theme.of(context).colorScheme.background,
+      fontWeight: FontWeights.extrabold,
+    ));
 
     return BlocListener<UpdateScoreAndCoinsCubit, UpdateScoreAndCoinsState>(
       listener: (context, state) {
@@ -273,10 +280,10 @@ class _RandomBattleScreenState extends State<RandomBattleScreen> {
                         /// VS
                         Padding(
                           padding: const EdgeInsets.only(top: 75, left: 3),
-                          child: SvgPicture.asset(
-                            AssetsUtils.getImagePath("vs.svg"),
-                            width: 247.177,
-                            height: 126.416,
+                          child: Image.asset(
+                            AssetsUtils.getImagePath("brain_fight.png"),
+                            width: 500,
+                            height: 250,
                           ),
                         ),
 
@@ -302,16 +309,9 @@ class _RandomBattleScreenState extends State<RandomBattleScreen> {
                               Align(
                                 alignment: Alignment.topCenter,
                                 child: Text(
-                                  AppLocalization.of(context)!
-                                      .getTranslatedValues("randomLbl")!,
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .background,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                                    AppLocalization.of(context)!
+                                        .getTranslatedValues("randomLbl")!,
+                                    style: titleTextStyle),
                               ),
                             ],
                           ),

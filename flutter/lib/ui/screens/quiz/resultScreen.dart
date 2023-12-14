@@ -58,7 +58,7 @@ class ResultScreen extends StatefulWidget {
   final List<Question>? questions; //to see reivew answers
   final BattleRoom? battleRoom; //will be in use for battle
   final bool
-      playWithBot; // used for random battle with robot, users doesn't get any coins or score for playing with bot.
+      playWithBot; // used for Brain Battle with robot, users doesn't get any coins or score for playing with bot.
   final String? contestId;
   final Comprehension comprehension; //
   final List<GuessTheWordQuestion>?
@@ -900,10 +900,6 @@ class _ResultScreenState extends State<ResultScreen> {
   ) {
     return Container(
       margin: margin,
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
       // padding: const EdgeInsets.all(10),
       width: MediaQuery.of(context).size.width * (0.2125),
       height: 33.0,
@@ -1169,19 +1165,21 @@ class _ResultScreenState extends State<ResultScreen> {
                                 padding: const EdgeInsets.only(
                                     top: 10, bottom: 10, right: 30, left: 30),
                                 decoration: ShapeDecoration(
-              color: white,
-              shadows: [
-                BoxShadow(
-                  color: wood_smoke,
-                  offset: Offset(
-                    0.0, // Move to right 10  horizontally
-                    6.0, // Move to bottom 5 Vertically
-                  ),
-                )
-              ],
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                  side: BorderSide(color: wood_smoke, width: 2))),
+                                    color: white,
+                                    shadows: [
+                                      BoxShadow(
+                                        color: wood_smoke,
+                                        offset: Offset(
+                                          0.0, // Move to right 10  horizontally
+                                          6.0, // Move to bottom 5 Vertically
+                                        ),
+                                      )
+                                    ],
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(16)),
+                                        side: BorderSide(
+                                            color: wood_smoke, width: 2))),
                                 child: Text(
                                   "${AppLocalization.of(context)!.getTranslatedValues("youWin")!} ${widget.entryFee! * 2} ${AppLocalization.of(context)!.getTranslatedValues("coinsLbl")!}",
                                   style: TextStyle(
@@ -1563,19 +1561,19 @@ class _ResultScreenState extends State<ResultScreen> {
         height: MediaQuery.of(context).size.height * (0.560),
         width: MediaQuery.of(context).size.width * (0.90),
         decoration: ShapeDecoration(
-              color: white,
-              shadows: [
-                BoxShadow(
-                  color: wood_smoke,
-                  offset: Offset(
-                    0.0, // Move to right 10  horizontally
-                    6.0, // Move to bottom 5 Vertically
-                  ),
-                )
-              ],
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                  side: BorderSide(color: wood_smoke, width: 2))),
+            color: white,
+            shadows: [
+              BoxShadow(
+                color: wood_smoke,
+                offset: Offset(
+                  0.0, // Move to right 10  horizontally
+                  6.0, // Move to bottom 5 Vertically
+                ),
+              )
+            ],
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                side: BorderSide(color: wood_smoke, width: 2))),
         child: _buildResultDetails(context),
       ),
     );

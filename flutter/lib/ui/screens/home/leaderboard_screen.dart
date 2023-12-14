@@ -18,6 +18,8 @@ import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/constants/string_labels.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:flutterquiz/utils/user_utils.dart';
+import 'package:flutterquiz/utils/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LeaderBoardScreen extends StatefulWidget {
   const LeaderBoardScreen({super.key});
@@ -118,7 +120,6 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
       length: 3,
       child: Scaffold(
         appBar: QAppBar(
-          elevation: 0,
           title: Text(AppLocalization.of(context)!
               .getTranslatedValues("leaderboardLbl")!),
           bottom: TabBar(
@@ -354,13 +355,24 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
     final width = MediaQuery.of(context).size.width;
 
     return Container(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      margin: const EdgeInsets.only(left: 10, right: 10),
       width: width,
       height: height * 0.29,
-      decoration: BoxDecoration(
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(10)),
-        color: Theme.of(context).colorScheme.background,
-      ),
+      decoration: const ShapeDecoration(
+          color: flamingo,
+          shadows: [
+            BoxShadow(
+              color: wood_smoke,
+              offset: Offset(
+                0.0, // Move to right 10  horizontally
+                0.0, // Move to bottom 5 Vertically
+              ),
+            )
+          ],
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+              side: BorderSide(color: wood_smoke, width: 2))),
       child: LayoutBuilder(
         builder: (context, constraints) {
           final onTertiary = Theme.of(context).colorScheme.onTertiary;
@@ -415,11 +427,12 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
                                 fontSize: 12,
-                                fontWeight: FontWeights.regular,
+                                fontWeight: FontWeights.extrabold,
                                 color: onTertiary.withOpacity(.8),
-                              ),
+                              )),
                             ),
                           ),
                         ),
@@ -434,7 +447,7 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 18,
-                                fontWeight: FontWeights.bold,
+                                fontWeight: FontWeights.extrabold,
                                 color: onTertiary,
                               ),
                             ),
@@ -488,11 +501,12 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeights.regular,
+                              style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeights.extrabold,
                                 color: onTertiary.withOpacity(.8),
-                              ),
+                              )),
                             ),
                           ),
                         ),
@@ -564,10 +578,12 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
                               overflow: TextOverflow.ellipsis,
                               maxLines: 1,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: onTertiary.withOpacity(0.8),
-                              ),
+                              style: GoogleFonts.montserrat(
+                                  textStyle: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeights.extrabold,
+                                color: onTertiary.withOpacity(.8),
+                              )),
                             ),
                           ),
                         ),
@@ -582,7 +598,7 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeights.extrabold,
                                 color: onTertiary,
                               ),
                             ),
@@ -622,30 +638,35 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
     ScrollController controller,
     bool hasMore,
   ) {
+    var colorScheme = Theme.of(context).colorScheme;
     if (leaderBoardList.length <= 3) return const SizedBox();
 
-    final textStyle = TextStyle(
-      color: Theme.of(context).colorScheme.onTertiary,
-      fontSize: 16,
-    );
+    final leaderBoardTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+            color: Theme.of(context).colorScheme.onTertiary,
+            fontSize: 16,
+            fontWeight: FontWeights.extrabold));
+
+    final leaderBoardScoreTextStyle = GoogleFonts.montserrat(
+        textStyle: TextStyle(
+            color: santas_gray,
+            fontSize: 16,
+            fontWeight: FontWeights.extrabold));
+
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
     return Expanded(
       child: Container(
+        decoration: BoxDecoration(color: colorScheme.background),
         height: height * .45,
         padding: EdgeInsets.only(top: 5, left: width * .02, right: width * .02),
         child: ListView.separated(
           controller: controller,
           shrinkWrap: true,
           itemCount: leaderBoardList.length,
-          separatorBuilder: (_, i) => i > 2
-              ? Divider(
-                  color: Colors.grey,
-                  indent: width * 0.03,
-                  endIndent: width * 0.03,
-                )
-              : const SizedBox(),
+          separatorBuilder: (_, i) =>
+              i > 2 ? const SizedBox(height: 5.0) : const SizedBox(height: 5.0),
           itemBuilder: (context, index) {
             return index > 2
                 ? (hasMore && index == (leaderBoardList.length - 1))
@@ -656,7 +677,7 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
                           Expanded(
                             child: Text(
                               leaderBoardList[index]['user_rank']!,
-                              style: textStyle,
+                              style: leaderBoardTextStyle,
                             ),
                           ),
                           Expanded(
@@ -667,7 +688,7 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
                               title: Text(
                                 leaderBoardList[index]['name'] ?? "...",
                                 overflow: TextOverflow.ellipsis,
-                                style: textStyle,
+                                style: leaderBoardTextStyle,
                               ),
                               leading: Container(
                                 width: width * .12,
@@ -696,7 +717,7 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
                                     ),
                                     maxLines: 1,
                                     softWrap: false,
-                                    style: textStyle,
+                                    style: leaderBoardScoreTextStyle,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
@@ -714,17 +735,34 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
 
   Widget myRank(String rank, String profile, String score) {
     var colorScheme = Theme.of(context).colorScheme;
-    final textStyle = TextStyle(color: colorScheme.onTertiary, fontSize: 16);
+    final myRankTextStyle = GoogleFonts.montserrat(
+        textStyle: const TextStyle(
+            color: flamingo, fontSize: 16, fontWeight: FontWeights.extrabold));
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
     return Container(
-      decoration: BoxDecoration(color: colorScheme.background),
+      padding: const EdgeInsets.only(bottom: 0, left: 10.0, right: 10.0),
+      margin: const EdgeInsets.only(bottom: 20, left: 10.0, right: 10.0),
+      decoration: const ShapeDecoration(
+          color: white,
+          shadows: [
+            BoxShadow(
+              color: wood_smoke,
+              offset: Offset(
+                0.0, // Move to right 10  horizontally
+                0.0, // Move to bottom 5 Vertically
+              ),
+            )
+          ],
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+              side: BorderSide(color: wood_smoke, width: 2))),
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: width * 0.03),
         title: Row(
           children: [
-            Center(child: Text(rank, style: textStyle)),
+            Center(child: Text(rank, style: myRankTextStyle)),
             Container(
               margin: const EdgeInsets.only(left: 10),
               height: height * .06,
@@ -746,7 +784,7 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
             Text(
               AppLocalization.of(context)!.getTranslatedValues(myRankKey)!,
               overflow: TextOverflow.ellipsis,
-              style: textStyle,
+              style: myRankTextStyle,
             ),
           ],
         ),
@@ -754,7 +792,7 @@ class _LeaderBoardScreen extends State<LeaderBoardScreen> {
           score,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
-          style: textStyle,
+          style: myRankTextStyle,
         ),
       ),
     );
