@@ -33,6 +33,7 @@ import 'package:http/http.dart' as http;
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 import '../../../features/inAppPurchase/in_app_product.dart';
 import '../../../utils/constants/api_body_parameter_labels.dart';
@@ -325,6 +326,15 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                             showDialog<bool>(
                                 context: context,
                                 builder: (context) => AlertDialog(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 24, horizontal: 36),
+                                      actionsAlignment:
+                                          MainAxisAlignment.center,
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(16)),
+                                          side: BorderSide(
+                                              color: wood_smoke, width: 2)),
                                       shadowColor: Colors.transparent,
                                       actions: [
                                         TextButton(
@@ -685,6 +695,11 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
       builder: (_) => WillPopScope(
         onWillPop: () => Future.value(false),
         child: AlertDialog(
+          contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 36),
+          actionsAlignment: MainAxisAlignment.center,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+              side: BorderSide(color: wood_smoke, width: 2)),
           shadowColor: Colors.transparent,
           content: Text(
             localisedValueOf('roomDeletedOwnerLbl'),
@@ -1362,6 +1377,11 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
+            contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 36),
+            actionsAlignment: MainAxisAlignment.center,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                side: BorderSide(color: wood_smoke, width: 2)),
             shadowColor: Colors.transparent,
             backgroundColor: Theme.of(context).colorScheme.background,
             content: Text(
@@ -1425,6 +1445,11 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
+          contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 36),
+          actionsAlignment: MainAxisAlignment.center,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+              side: BorderSide(color: wood_smoke, width: 2)),
           shadowColor: Colors.transparent,
           backgroundColor: Theme.of(context).colorScheme.background,
           content: Text(localisedValueOf("roomDelete"), style: textStyle),
@@ -1898,7 +1923,7 @@ class _CreateOrJoinRoomScreenState extends State<CreateOrJoinRoomScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 75, left: 3),
                         child: Image.asset(
-                          AssetsUtils.getImagePath("brain_fight.png"),
+                          AssetsUtils.getImagePath("versus.png"),
                           width: 720,
                           height: 360,
                         ),

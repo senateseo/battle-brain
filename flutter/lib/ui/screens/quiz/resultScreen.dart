@@ -47,6 +47,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutterquiz/utils/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ResultScreen extends StatefulWidget {
   final QuizTypes?
@@ -1816,40 +1817,46 @@ class _ResultScreenState extends State<ResultScreen> {
         showDialog(
           context: context,
           builder: (_) => AlertDialog(
-            contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 18),
-            actionsAlignment: MainAxisAlignment.center,
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-                side: BorderSide(color: wood_smoke, width: 2)),
-            actions: [
-              OutlinedButton(
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 24, horizontal: 36),
+              actionsAlignment: MainAxisAlignment.center,
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  side: BorderSide(color: wood_smoke, width: 2)),
+              actions: [
+                OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                        backgroundColor: black,
+                        side: BorderSide(color: wood_smoke, width: 2)),
+                    onPressed: onTapYesReviewAnswers,
+                    child: Text(
+                      AppLocalization.of(context)!
+                          .getTranslatedValues(continueLbl)!,
+                      style: TextStyle(color: white),
+                    )),
+
+                /// Cancel Button
+                OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                      backgroundColor: black,
                       side: BorderSide(color: wood_smoke, width: 2)),
-                  onPressed: onTapYesReviewAnswers,
+                  onPressed: Navigator.of(context).pop,
                   child: Text(
                     AppLocalization.of(context)!
-                        .getTranslatedValues(continueLbl)!,
-                    style: TextStyle(color: white),
-                  )),
-
-              /// Cancel Button
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: wood_smoke, width: 2)),
-                onPressed: Navigator.of(context).pop,
-                child: Text(
-                  AppLocalization.of(context)!
-                      .getTranslatedValues(cancelButtonKey)!,
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                        .getTranslatedValues(cancelButtonKey)!,
+                    style: TextStyle(color: Theme.of(context).primaryColor),
+                  ),
                 ),
-              ),
-            ],
-            content: Text(
-              "$reviewAnswersDeductCoins ${AppLocalization.of(context)!.getTranslatedValues(coinsWillBeDeductedKey)!}",
-              style: TextStyle(color: Theme.of(context).colorScheme.primary),
-            ),
-          ),
+              ],
+              content: FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                    "$reviewAnswersDeductCoins ${AppLocalization.of(context)!.getTranslatedValues(coinsWillBeDeductedKey)!}",
+                    style: GoogleFonts.montserrat(
+                      textStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 12.0),
+                    )),
+              )),
         );
       },
       context,

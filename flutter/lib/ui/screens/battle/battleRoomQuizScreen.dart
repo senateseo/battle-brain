@@ -33,6 +33,7 @@ import 'package:flutterquiz/utils/internet_connectivity.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class BattleRoomQuizScreen extends StatefulWidget {
   const BattleRoomQuizScreen({super.key, required this.playWithBot});
@@ -411,6 +412,11 @@ class _BattleRoomQuizScreenState extends State<BattleRoomQuizScreen>
         showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
+            contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 36),
+            actionsAlignment: MainAxisAlignment.center,
+            shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                side: BorderSide(color: wood_smoke, width: 2)),
             shadowColor: Colors.transparent,
             actions: [
               TextButton(
@@ -722,6 +728,11 @@ class _BattleRoomQuizScreenState extends State<BattleRoomQuizScreen>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: AlertDialog(
+        contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 36),
+        actionsAlignment: MainAxisAlignment.center,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            side: BorderSide(color: wood_smoke, width: 2)),
         shadowColor: Colors.transparent,
         title: Text(
           AppLocalization.of(context)!.getTranslatedValues('youWonLbl')!,
@@ -786,6 +797,12 @@ class _BattleRoomQuizScreenState extends State<BattleRoomQuizScreen>
             color: Theme.of(context).colorScheme.background.withOpacity(0.12),
             child: Center(
               child: AlertDialog(
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 24, horizontal: 36),
+                actionsAlignment: MainAxisAlignment.center,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    side: BorderSide(color: wood_smoke, width: 2)),
                 shadowColor: Colors.transparent,
                 content: Text(
                   AppLocalization.of(context)!

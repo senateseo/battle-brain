@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterquiz/app/app_localization.dart';
+import 'package:flutterquiz/utils/colors.dart';
 
 class GuestModeDialog extends StatelessWidget {
   const GuestModeDialog({
@@ -17,9 +18,24 @@ class GuestModeDialog extends StatelessWidget {
     final textStyle = TextStyle(color: Theme.of(context).primaryColor);
     final appLocalization = AppLocalization.of(context);
     return AlertDialog(
-      content: Text(appLocalization!.getTranslatedValues("guestMode")!),
+      contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+      alignment: Alignment.center,
+      actionsAlignment: MainAxisAlignment.center,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+          side: BorderSide(color: wood_smoke, width: 2)),
+      content: Wrap(children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [Text(appLocalization!.getTranslatedValues("guestMode")!)],
+        )
+      ]),
       actions: [
-        CupertinoButton(
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+              backgroundColor: white,
+              side: BorderSide(color: wood_smoke, width: 2)),
           onPressed: () {
             if (onTapNoButton != null) {
               onTapNoButton!();
@@ -29,14 +45,17 @@ class GuestModeDialog extends StatelessWidget {
           },
           child: Text(
             appLocalization.getTranslatedValues("cancel")!,
-            style: textStyle,
+            style: TextStyle(color: black),
           ),
         ),
-        CupertinoButton(
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+              backgroundColor: black,
+              side: BorderSide(color: wood_smoke, width: 2)),
           onPressed: onTapYesButton,
           child: Text(
             appLocalization.getTranslatedValues("loginLbl")!,
-            style: textStyle,
+            style: TextStyle(color: white),
           ),
         ),
       ],

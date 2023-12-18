@@ -4,7 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class SettingsLocalDataSource {
   bool? showIntroSlider() {
-    return Hive.box(settingsBox).get(showIntroSliderKey, defaultValue: true);
+    return Hive.box(settingsBox).get(showIntroSliderKey, defaultValue: false);
   }
 
   Future<void> setShowIntroSlider(bool value) async {

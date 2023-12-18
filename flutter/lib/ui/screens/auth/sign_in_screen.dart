@@ -14,7 +14,6 @@ import 'package:flutterquiz/features/profileManagement/cubits/userDetailsCubit.d
 import 'package:flutterquiz/ui/screens/auth/widgets/app_logo.dart';
 import 'package:flutterquiz/ui/screens/auth/widgets/email_textfield.dart';
 import 'package:flutterquiz/ui/screens/auth/widgets/pswd_textfield.dart';
-import 'package:flutterquiz/ui/screens/auth/widgets/terms_and_condition.dart';
 import 'package:flutterquiz/ui/widgets/circularProgressContainer.dart';
 import 'package:flutterquiz/ui/widgets/customRoundedButton.dart';
 import 'package:flutterquiz/utils/assets_utils.dart';
@@ -23,7 +22,6 @@ import 'package:flutterquiz/utils/constants/fonts.dart';
 import 'package:flutterquiz/utils/ui_utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutterquiz/utils/colors.dart';
-import 'dart:convert';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -78,6 +76,15 @@ class _SignInScreenState extends State<SignInScreen> {
             alignment: Alignment.topCenter,
             decoration: const ShapeDecoration(
               color: white,
+              shadows: [
+                BoxShadow(
+                  color: wood_smoke,
+                  offset: Offset(
+                    0, // Move to right 10  horizontally
+                    -6.0, // Move to bottom 5 Vertically
+                  ),
+                )
+              ],
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(16),
@@ -105,16 +112,16 @@ class _SignInScreenState extends State<SignInScreen> {
                                     color: wood_smoke),
                               )),
                         ),
-                        // Expanded(
-                        //     flex: 1,
-                        //     child: IconButton(
-                        //         onPressed: () {
-                        //           Navigator.of(context).pop();
-                        //         },
-                        //         icon: SvgPicture.asset(
-                        //           "assets/images/close.svg",
-                        //           color: wood_smoke,
-                        //         )))
+                        Expanded(
+                            flex: 1,
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                icon: SvgPicture.asset(
+                                  "assets/images/close.svg",
+                                  color: wood_smoke,
+                                )))
                       ],
                     ),
                   ),

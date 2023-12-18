@@ -330,9 +330,9 @@ class _WalletScreenState extends State<WalletScreen>
             buttonTitle: AppLocalization.of(context)!
                     .getTranslatedValues(redeemNowKey) ??
                 "",
-            radius: 8.0,
+            radius: 16.0,
             showBorder: false,
-            titleColor: Theme.of(context).colorScheme.background,
+            titleColor: Theme.of(context).primaryColor,
             fontWeight: FontWeight.bold,
             textSize: 18.0,
             onTap: () {

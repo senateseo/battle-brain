@@ -25,12 +25,12 @@ class AlreadyLoggedInDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            width: width * .5,
-            height: width * .5,
-            child: SvgPicture.asset(UiUtils.getImagePath("already_login.svg")),
-          ),
-          const SizedBox(height: 15.0),
+          // SizedBox(
+          //   width: width * .5,
+          //   height: width * .5,
+          //   child: SvgPicture.asset(UiUtils.getImagePath("already_login.svg")),
+          // ),
+          // const SizedBox(height: 15.0),
           Text(alreadyLoggedIn, style: TextStyle(color: primaryColor)),
           const SizedBox(height: 15.0),
           GestureDetector(

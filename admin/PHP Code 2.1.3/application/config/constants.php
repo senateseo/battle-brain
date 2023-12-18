@@ -94,7 +94,7 @@ define('PERMISSION_ERROR_MSG','Modification in demo version is not allowed.');
 define('IMG_ALLOWED_TYPES', 'jpg|png|jpeg|JPG|PNG|JPEG|webp');
 define('IMG_ALLOWED_WITH_SVG_TYPES', 'jpg|png|jpeg|svg');
 
-define('CATEGORY_IMG_PATH', 'images/category/');
+define('', 'images/category/');
 define('SUBCATEGORY_IMG_PATH', 'images/subcategory/');
 define('QUESTION_IMG_PATH', 'images/questions/');
 define('NOTIFICATION_IMG_PATH', 'images/notifications/');

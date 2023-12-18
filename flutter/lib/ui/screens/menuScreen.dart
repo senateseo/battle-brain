@@ -38,7 +38,7 @@ import 'package:flutterquiz/utils/user_utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:launch_review/launch_review.dart';
 import 'package:share_plus/share_plus.dart';
-
+import 'package:flutterquiz/utils/colors.dart';
 import '../../features/inAppPurchase/in_app_product.dart';
 import '../../utils/constants/api_body_parameter_labels.dart';
 import 'home/widgets/guest_mode_dialog.dart';
@@ -80,14 +80,14 @@ class _MenuScreenState extends State<MenuScreen> {
     "inviteFriendsLbl",
     "badges",
     "coinStore",
-    "theme",
+    // "theme",
     "rewardsLbl",
     "statisticsLabel",
     "language",
     "aboutQuizApp",
-    "howToPlayLbl",
+    // "howToPlayLbl",
     "shareAppLbl",
-    "rateUsLbl",
+    // "rateUsLbl",
     "logoutLbl",
     "deleteAccountLbl"
   ];
@@ -100,14 +100,14 @@ class _MenuScreenState extends State<MenuScreen> {
     "invite_friends.svg",
     "badges_icon.svg",
     "coin_icon.svg",
-    "theme_icon.svg",
+    // "theme_icon.svg",
     "reword_icon.svg",
     "statistics_icon.svg",
     "language_icon.svg",
     "about_us_icon.svg",
-    "how_to_play_icon.svg",
+    // "how_to_play_icon.svg",
     "share_icon.svg",
-    "rate_icon.svg",
+    // "rate_icon.svg",
     "logout_icon.svg",
     "delete_account.svg"
   ];
@@ -277,6 +277,12 @@ class _MenuScreenState extends State<MenuScreen> {
                     height: MediaQuery.of(context).size.height,
                     child: Center(
                       child: AlertDialog(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 24, horizontal: 36),
+                        actionsAlignment: MainAxisAlignment.center,
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(16)),
+                            side: BorderSide(color: wood_smoke, width: 2)),
                         shadowColor: Colors.transparent,
                         content: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
